@@ -1,0 +1,7 @@
+generation 1:current popsize  20
+current bestIndividual: fitnessnullbestIndvidual: fitnessnull
+generation 2:current popsize  22
+current bestIndividual: fitnessnullbestIndvidual: fitnessnull
+generation 3:current popsize  15
+current bestIndividual: fitnessnullbestIndvidual: fitnessnull
+

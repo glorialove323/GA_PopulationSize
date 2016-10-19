@@ -22,7 +22,7 @@ public class Chromosome {
     //设置基因  
     public boolean setGene(int begin , int end , String gene){  
         int len = gene.length();  
-          
+        //System.out.print(begin);
         if(len > end - begin + 1)  
             return false;  
               
@@ -40,8 +40,7 @@ public class Chromosome {
     //获取基因  
     public String getGene(int begin , int end){  
         char[] dest = new char[end - begin + 1];  
-        chromosome.getChars(begin , end + 1 , dest , 0);  
-
+       chromosome.getChars(begin , end+1 , dest , 0);
         return new String(dest);          
     }  
       
@@ -54,15 +53,10 @@ public class Chromosome {
     }  
       
     @Override  
-    public     Object clone()throws CloneNotSupportedException{  
+    public Object clone()throws CloneNotSupportedException{  
         Chromosome c = null;  
-        try{  
-            c = (Chromosome)super.clone();  
-            c.chromosome = new StringBuffer(chromosome);  
-        }catch(CloneNotSupportedException e ){  
-            System.out.println(e.getMessage());  
-        }  
-
-        return c;      
+        c = new Chromosome(chromosomeLength);
+        c.chromosome = new StringBuffer(chromosome.toString());
+        return c;    
     }  
 }

@@ -30,7 +30,7 @@ class GeneticAlgorithms{
         Population pop = new Population(populationSize);  
         pop.initPopulation();  
 
-       // pw.println("初始种群:\n" + pop);  
+        pw.println("初始种群:\n" + pop);  
         while(!pop.isEvolutionDone()){  
             pop.evolve();  
             pw.print("第"+pop.getGeneration()+"代：");
