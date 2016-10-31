@@ -31,13 +31,20 @@ class GeneticAlgorithms{
         pop.initPopulation();  
 
         pw.println("初始种群:\n" + pop);  
+        
+        long startTime = System.currentTimeMillis();
         while(!pop.isEvolutionDone()){  
             pop.evolve();  
             pw.print("第"+pop.getGeneration()+"代：");
-            pw.print("当代适应度最好的个体：" + pop.bestIndividual );  
-            pw.print("    截止当代为止的最好的个体：" + pop.currentBest );  
+            System.out.println("第"+pop.getGeneration()+"代：");
+            pw.print("当代适应度最好的个体：" + pop.bestIndividual ); 
+            System.out.println("当代适应度最好的个体： "+pop.bestIndividual);
+            pw.print("    截止当代为止的最好的个体：" + pop.currentBest ); 
+            System.out.println("截止当代为止的最好的个体："+pop.currentBest);
             pw.println("");          
-        }  
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("the total evolve time: "+(endTime-startTime));
         pw.println();  
         pw.println("第"+ pop.getGeneration()  + "代群体:\n" + pop);  
 

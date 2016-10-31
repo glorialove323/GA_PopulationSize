@@ -1,0 +1,118 @@
+初始种群:
+函数值:0.174909865607763
+函数值:0.2360834028748503
+函数值:1.4657681920929648
+函数值:1.735317645375177
+函数值:0.2099943437267302
+函数值:1.1007587252847615
+函数值:1.0568403890393594
+函数值:0.4273970504029033
+函数值:0.74822963580213
+函数值:0.39286521539401353
+函数值:1.5384055428628631
+函数值:0.20942221162490915
+函数值:-0.37480772468731516
+函数值:-0.7284881431703338
+函数值:0.9393265265919709
+函数值:2.1025066747446246
+函数值:1.5267774992376821
+函数值:1.2854732047963031
+函数值:2.13498168609111
+函数值:0.8511963541236123
+
+generation 1:current popsize  20
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 2:current popsize  20
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 3:current popsize  21
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 4:current popsize  22
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 5:current popsize  18
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 6:current popsize  18
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 7:current popsize  17
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 8:current popsize  17
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 9:current popsize  16
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 10:current popsize  16
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 11:current popsize  14
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 12:current popsize  14
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 13:current popsize  15
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 14:current popsize  15
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 15:current popsize  14
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 16:current popsize  14
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 17:current popsize  14
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 18:current popsize  14
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 19:current popsize  13
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 20:current popsize  13
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 21:current popsize  12
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 22:current popsize  12
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 23:current popsize  12
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 24:current popsize  12
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 25:current popsize  12
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 26:current popsize  12
+current bestIndividual: fitness2.135    bestIndvidual: fitness2.135
+generation 27:current popsize  11
+current bestIndividual: fitness2.132    bestIndvidual: fitness2.135
+generation 28:current popsize  11
+current bestIndividual: fitness2.132    bestIndvidual: fitness2.135
+generation 29:current popsize  11
+current bestIndividual: fitness2.326    bestIndvidual: fitness2.326
+generation 30:current popsize  11
+current bestIndividual: fitness2.326    bestIndvidual: fitness2.326
+generation 31:current popsize  11
+current bestIndividual: fitness2.326    bestIndvidual: fitness2.326
+generation 32:current popsize  11
+current bestIndividual: fitness2.326    bestIndvidual: fitness2.326
+generation 33:current popsize  12
+current bestIndividual: fitness2.326    bestIndvidual: fitness2.326
+generation 34:current popsize  12
+current bestIndividual: fitness2.326    bestIndvidual: fitness2.326
+generation 35:current popsize  13
+current bestIndividual: fitness2.326    bestIndvidual: fitness2.326
+generation 36:current popsize  13
+current bestIndividual: fitness2.326    bestIndvidual: fitness2.326
+generation 37:current popsize  13
+current bestIndividual: fitness2.326    bestIndvidual: fitness2.326
+generation 38:current popsize  13
+current bestIndividual: fitness2.326    bestIndvidual: fitness2.326
+generation 39:current popsize  13
+current bestIndividual: fitness2.326    bestIndvidual: fitness2.326
+generation 40:current popsize  13
+current bestIndividual: fitness2.327    bestIndvidual: fitness2.327
+
+第40代群体:
+函数值:1.5409757084893023
+函数值:2.326352606221814
+函数值:2.1307264353909963
+函数值:2.326352606221814
+函数值:2.131646120310979
+函数值:2.0128404087793292
+函数值:2.320336871824445
+函数值:2.131120798870308
+函数值:2.131514843164318
+函数值:-0.1589899175646099
+函数值:2.326352606221814
+函数值:2.326352606221814
+函数值:2.3265341585887787
+

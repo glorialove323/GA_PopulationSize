@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.gyy.lifetime_GAVaPS;
+package com.gyy.MultiPops_PGA.SGA;
 
 /**
  * @author Gloria
@@ -40,7 +40,7 @@ public class Chromosome {
     //获取基因  
     public String getGene(int begin , int end){  
         char[] dest = new char[end - begin + 1];  
-       chromosome.getChars(begin , end+1 , dest , 0);
+        chromosome.getChars(begin , end + 1 , dest , 0);
         return new String(dest);          
     }  
       

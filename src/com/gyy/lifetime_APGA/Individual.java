@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.gyy.lifetime_GAVaPS;
+package com.gyy.lifetime_APGA;
 
 
 /**
@@ -9,12 +9,11 @@ package com.gyy.lifetime_GAVaPS;
  * 
  */
 public class Individual {
-    static int defaultChromLength =20;
-    static int defaultGeneLength = 10;
+    static int defaultGeneLength = 20;
 
     public Chromosome chrom;
 
-    private double x1,x2;
+    private double x;
 
     private double indivFitness = 0;
 
@@ -24,11 +23,10 @@ public class Individual {
 
     final int MinLT = 1;
 
-    final int MaxLT = 7;
+    final int MaxLT = 15;
 
     public Individual() {
-        defaultGeneLength = 10;
-        chrom = new Chromosome(defaultChromLength);
+        chrom = new Chromosome(defaultGeneLength);
         generateIndividual();
     }
 
@@ -44,7 +42,7 @@ public class Individual {
     //计算个体的适应度值
     public double calFitness(){
         decode();
-        indivFitness = function(x1,x2);
+        indivFitness = function(x);
         return indivFitness;
     }
     //计算个体的age值，每执行一次进化算法，就加1
@@ -95,24 +93,20 @@ public class Individual {
 
     // 编码
     public void coding() {
-        String code1,code2;
-        code1 = codingVariable(x1);
-        code2 = codingVariable(x2);       
-        chrom.setGene(0, 9, code1);
-        chrom.setGene(10, 19, code2);
+        String code;
+        code = codingVariable(x);
+        chrom.setGene(0, 19, code);
     }
 
     // 解码
     public void decode() {
-        String gene1,gene2;
-        gene1 = chrom.getGene(0, 9);
-        gene2 = chrom.getGene(10, 19);
-        x1 = decodeGene(gene1);
-        x2 = decodeGene(gene2);
+        String gene;
+        gene = chrom.getGene(0, 19);
+        x = decodeGene(gene);
     }
 
     private String codingVariable(double x) {
-        double y = (((x + 2.048) * 1023) / 4.096);
+        double y = (((x + 2) * Math.pow(2, 20)) / 3);
         String code = Integer.toBinaryString((int) y);
 
         StringBuffer codeBuf = new StringBuffer(code);
@@ -126,7 +120,7 @@ public class Individual {
         int value;
         double decode;
         value = Integer.parseInt(gene, 2);
-        decode = value / 1023.0 * 4.096 - 2.048;
+        decode = value / (Math.pow(2, 20)) * 3 - 2;
 
         return decode;
     }
@@ -142,39 +136,25 @@ public class Individual {
         String str = "";
         // /str = "基因型:" + chrom + "  ";
         // /str+= "表现型:" + "[x1,x2]=" + "[" + x1 + "," + x2 + "]" + "\t";
-        str += "函数值:" + function(x1,x2) + "\n";
+        str += "函数值:" + function(x) + "\n";
+
         return str;
     }
 
-   /* *//**
+    /**
      * G1函数 y = -xsin(10πx)+1 -2.0 =< x <= 1.0
-     *//*
+     */
     public static double function(double x) {
         double fun;
         fun = -x * (Math.sin(10 * (Math.PI) * x)) + 1;
 
-        return fun;
-    }*/
-    
-    /*
-     * Rosenbrock函数:f(x1,x2) = 100*(x1**2 - x2)**2 + (1 - x1)**2
-     * 在当x在[-2.048 ,2.048]内时，
-     * 函数有两个极大点:
-     * f(2.048 , -2.048) = 3897.7342
-     * f(-2.048,-2.048) =3905.926227
-     * 其中后者为全局最大点。
-     */
-    public static double function(double x1, double x2){
-        double fun;
-        fun = -(100*Math.pow((x1*x1-x2), 2)+Math.pow((1-x1), 2)); 
         return fun;
     }
 
     // 随机产生个体
     public void generateIndividual() {
         // Math.random()的取值范围是[0,1]
-        x1 = Math.random() * 4.096 - 2.048;
-        x2 = Math.random() * 4.096 - 2.048;;
+        x = Math.random() * 3 - 2;
 
         // 同步编码和适应度
         coding();
@@ -187,8 +167,10 @@ public class Individual {
         try {
             inv.chrom = chrom.clone();
         } catch (CloneNotSupportedException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return inv;
     }
+
 }

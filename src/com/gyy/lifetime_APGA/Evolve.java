@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.gyy.lifetime_GAVaPS;
+package com.gyy.lifetime_APGA;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,8 +24,9 @@ public class Evolve {
     }
 
     /*
-     * GAVaPS的操作过程： 1、构造一个auxPopulation，种群规模为原来的规模的40% 2、对该种群进行交叉和变异
+     * APGA的操作过程： 1、构造一个auxPopulation，种群规模为2 2、对该种群进行交叉和变异
      * 3、将这些个体加入到原来的种群中去 (暂定全部加入到原来的种群中去) 4、根据lifetime机制来消除个体
+     * 5、lifetime值MinLT为1，MaxLT为15
      */
     /*
      * 每次进入循环，种群中的所有个体的age值都增加1
@@ -47,7 +48,7 @@ public class Evolve {
         /*
          * select p*popsize individuals randomly
          */
-        int auxPopSize = (int) (pop.getPopSize() * GeneticAlgorithms.reproductionRatio);
+        int auxPopSize = 2;
 
         List<Individual> auxPopList = new ArrayList<Individual>();
 

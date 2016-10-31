@@ -1,11 +1,10 @@
 /**
- * GAVaPS
- * 缺点：1、当初始种群很差的时候，个体的淘汰率也很大，导致最后的个体削减的很快，实验结果不理想
- * 缺点：2、当初始种群很好的时候，个体的淘汰率很小，导致种群中的个体猛涨，影响进化效率
- * 缺点：3、很难运行到一个比较合适的时机，使得实验结果不错且种群中的个数不猛涨
- * 缺点：4、相比简单遗传算法而言，所需进化时间要久一些
+ * APGA
+ * 优点：1、相比GAVaPS而言，运行时间大大减少，与简单遗传算法的时间相近
+ * 优点：2、相比GAVaPS而言，种群规模确实不会疯长了
+ * 缺点：1、可就是因为种群规模变化太小，或者种群个体淘汰率过高，导致最终的实验结果很差
  */
-package com.gyy.lifetime_GAVaPS;
+package com.gyy.lifetime_APGA;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -37,7 +36,7 @@ public class GeneticAlgorithms {
     }  
     public static void main(String[] args)throws IOException{  
 
-        FileWriter fw = new FileWriter("result_GAVaPS.txt");  
+        FileWriter fw = new FileWriter("result_APGA.txt");  
         BufferedWriter bw = new BufferedWriter(fw);  
         PrintWriter pw = new PrintWriter(bw);  
           
