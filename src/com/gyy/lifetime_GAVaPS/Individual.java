@@ -166,7 +166,7 @@ public class Individual {
      */
     public static double function(double x1, double x2){
         double fun;
-        fun = -(100*Math.pow((x1*x1-x2), 2)+Math.pow((1-x1), 2)); 
+        fun = (100*Math.pow((x1*x1-x2), 2)+Math.pow((1-x1), 2)); 
         return fun;
     }
 
