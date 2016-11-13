@@ -1,5 +1,6 @@
 package com.gyy.Shrink_dynNP;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class dynNPSolver  {
@@ -23,10 +24,11 @@ public class dynNPSolver  {
         muta.mutate(pop.getIndividuals());
     }*/
     
-    public static void evolve(Population pop){
+    public static double evolve(Population pop){
         int oldPopSize = pop.getPopSize();
         System.out.println("current population size is: "+oldPopSize);
         int gen = maxnfeval/pmax/(oldPopSize);
+        double fBestFitness = 0;
         for(int i=0;i<gen;i++){
             Crossover cros = new UniformCrossover(0.65, 0.5);
             Mutation muta = new Mutation(0.015);
@@ -35,7 +37,14 @@ public class dynNPSolver  {
                 pop.setIndividual(j, inv[j], 0);
             }
             muta.mutate(pop.getIndividuals());
+            System.out.print(i+":");
+            pop.calFitnessValues();
+            if (pop.getBestFit() > fBestFitness){
+            	fBestFitness = pop.getBestFit();
+            }
+            pop.dumpMyself();
         }
+        return fBestFitness;
 
     }
     
@@ -52,17 +61,19 @@ public class dynNPSolver  {
     public static void run(){
         int i=0;
         Population pop = new IndivPopulation(m_nInitalSize);
+        List<Double> listBestFit = new ArrayList<Double>();
         while (i < pmax){
             System.out.println("Generation: "+(i+1));
-            evolve(pop);
+            double fBestFitness = evolve(pop);
+            listBestFit.add(fBestFitness);
             pop.dumpMyself();
             Population newPop = reduce(pop);
-//            newPop.dumpMyself();
-//            for(int j=0;j<newPop.getPopSize();j++){
-//                System.out.println(newPop.fitness[j]);
-//            }
             pop = newPop;
             i++;
+        }
+        for(i = 0; i < listBestFit.size(); i++){
+        	System.out.println("--------------------------------");
+        	System.out.println("generation : "+i+" bestFit ="+listBestFit.get(i));
         }
     }
     
