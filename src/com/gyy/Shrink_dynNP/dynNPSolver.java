@@ -23,7 +23,7 @@ public class dynNPSolver  {
         muta.mutate(pop.getIndividuals());
     }*/
     
-    public static Population evolve(Population pop){
+    public static void evolve(Population pop){
         int oldPopSize = pop.getPopSize();
         System.out.println("current population size is: "+oldPopSize);
         int gen = maxnfeval/pmax/(oldPopSize);
@@ -36,6 +36,11 @@ public class dynNPSolver  {
             }
             muta.mutate(pop.getIndividuals());
         }
+
+    }
+    
+    public static Population reduce(Population pop){
+    	int oldPopSize = pop.getPopSize();
         int newPopSize = oldPopSize/2;
         Population newPop = new Population(newPopSize);
         Reduction rect = new Reduction();
@@ -49,11 +54,13 @@ public class dynNPSolver  {
         Population pop = new IndivPopulation(m_nInitalSize);
         while (i < pmax){
             System.out.println("Generation: "+(i+1));
-            Population newPop = evolve(pop);
-            newPop.dumpMyself();
-            for(int j=0;j<newPop.getPopSize();j++){
-                System.out.println(newPop.fitness[j]);
-            }
+            evolve(pop);
+            pop.dumpMyself();
+            Population newPop = reduce(pop);
+//            newPop.dumpMyself();
+//            for(int j=0;j<newPop.getPopSize();j++){
+//                System.out.println(newPop.fitness[j]);
+//            }
             pop = newPop;
             i++;
         }
