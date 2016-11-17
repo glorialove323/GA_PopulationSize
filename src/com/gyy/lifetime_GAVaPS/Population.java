@@ -14,7 +14,7 @@ import java.util.List;
  * @author Gloria
  * 
  */
-class Population {
+public class Population {
 
     // List类型，可以随时进行增删
     List<Individual> popList;

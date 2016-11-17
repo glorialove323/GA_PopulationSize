@@ -35,7 +35,7 @@ public class GeneticAlgorithms {
         mutateRate = 0.015;
         reproductionRatio = 0.4;
     }  
-    public static void main(String[] args)throws IOException{  
+    public static void main(String[] args) throws IOException{  
 
         FileWriter fw = new FileWriter("result_GAVaPS.txt");  
         BufferedWriter bw = new BufferedWriter(fw);  
@@ -50,11 +50,15 @@ public class GeneticAlgorithms {
         DecimalFormat df = new DecimalFormat("######0.000"); 
         
         long startTime = System.currentTimeMillis();
-        while(!Evolve.isEvolutionDone()){
+        while(!Evolve.isEvolutionDone()&&(!Evolve.isPopSizeZero(pop))){
             Evolve.evolve(pop);
+            System.out.println("popsize: "+pop.getPopSize());
             pw.println("generation "+Evolve.getGeneration()+":current popsize  "+pop.getPopSize());
             pw.print("current bestIndividual: fitness" + df.format(pop.getBestFitness()));  
             System.out.println("current bestFitness： "+ df.format(pop.getBestFitness()));
+            
+            //System.out.println("current best individual: "+pop.findBestIndividual());
+           
             pw.print("    bestIndvidual: fitness" + df.format(pop.currentBest.getFitness()) );
             System.out.println("bestFitness: "+df.format(pop.currentBest.getFitness()));
             pw.println(""); 

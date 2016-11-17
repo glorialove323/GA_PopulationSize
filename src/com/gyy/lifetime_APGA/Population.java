@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-
-
 /**
  * @author Gloria
  * 
@@ -26,6 +23,7 @@ class Population {
     Individual worstIndividual;// 当代适应度最差的个体
 
     Individual currentBest; // 截止当代之前适应度最好的个体
+    Individual currentWorst;
 
     private int popSize;//种群中个体的个数
 
@@ -114,22 +112,6 @@ class Population {
       return bestIndividual;
     }
 
-    /*// 找出最佳适应度个体
-    public void findBestIndividual() {
-        bestIndividual = worstIndividual = popList.get(0);
-        for (int i = 1; i < popList.size(); i++) {
-            if (popList.get(i).getFitness() > bestIndividual.getFitness()) {
-                bestIndividual = popList.get(i);
-            }
-            if (popList.get(i).fitness < worstIndividual.fitness) {
-                worstIndividual = popList.get(i);
-            }
-        }
-        if (bestIndividual.fitness > currentBest.fitness) {
-            currentBest = (Individual) bestIndividual.clone();
-        }
-    }*/
-
     // 获取平均适应度值
     public double getAvgFitness() {
         avgFitness = calTotalFitness() / popList.size();
@@ -147,12 +129,6 @@ class Population {
         }       
         return bestFitness;
     }
-
-   /* // 获取最佳适应度值
-    public double getBestFitness() {
-        bestFitness = bestIndividual.fitness;
-        return bestFitness;
-    }*/
     
   //获取当前种群中的最低适应度值
     public double getWorstFitness(){
@@ -165,12 +141,6 @@ class Population {
         }
         return worstFitness;
     }
-
-    /*// 获取最差适应度值
-    public double getWorstFitness() {
-        worstFitness = worstIndividual.fitness;
-        return worstFitness;
-    }*/
     
     public String toString(){  
         String str=""; 

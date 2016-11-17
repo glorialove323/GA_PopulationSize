@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 
+
+
 /**
  * @author Gloria
  * 
@@ -15,12 +17,12 @@ import java.util.List;
 public class Evolve {
     private static int generation; //种群的代数  
     
-    public static void evolve(Population pop) {
-             incIndivAge(pop);
-             incGeneration();
-             recombine(pop); 
-             elimination(pop); 
-             pop.findBestIndividual();
+    public static void evolve(Population pop){
+            incIndivAge(pop);
+            incGeneration();
+            recombine(pop); 
+            elimination(pop); 
+            pop.findBestIndividual();
     }
 
     /*
@@ -196,6 +198,15 @@ public class Evolve {
         if(getGeneration() < GeneticAlgorithms.maxGeneration)  
             return false;  
         return true;      
-    }  
-
+    }
+    
+    public static boolean isPopSizeZero(Population pop){
+        if(pop.getPopSize()>2){
+            System.out.println("popsize: "+pop.getPopSize());
+            return false;
+        }else{
+            System.out.println("popsize: "+pop.getPopSize());   
+            return true; 
+        }
+    }
 }
