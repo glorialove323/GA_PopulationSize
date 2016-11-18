@@ -5,9 +5,9 @@ package com.gyy.lifetime_testFuc;
 
 /**
  * @author Gloria
- * 
+ *
  */
-public class Rastrigin_Individual {
+public class Step_Individual {
     final int MinLT = 1;
 
     // GAVaPS
@@ -16,14 +16,13 @@ public class Rastrigin_Individual {
     // APGA
     final int MaxLT = 15;
 
-    private double MAX = 5.12;
+    private double MAX = 100;
 
-    private double MIN = -5.12;
+    private double MIN = -100;
 
     public static double function(double x1, double x2) {
         double fun;
-        fun = 0-(Math.pow(x1, 2) - 10 * Math.cos(2 * Math.PI * x1) + 10 + Math.pow(x2, 2) - 10
-                * Math.cos(2 * Math.PI * x2) + 10);
+        fun =0-( Math.pow(Math.floor(x1+0.5), 2)+Math.pow(Math.floor(x2+0.5), 2));
         return fun;
     }
 }

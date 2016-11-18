@@ -9,6 +9,7 @@ import java.util.List;
 
 
 
+
 /**
  * @author Gloria
  * 
@@ -199,5 +200,15 @@ public class Evolve {
             return false;  
         return true;      
     }  
+    
+    public static boolean isPopSizeZero(Population pop){
+        if(pop.getPopSize()>0){
+            System.out.println("popsize: "+pop.getPopSize());
+            return false;
+        }else{
+            System.out.println("popsize: "+pop.getPopSize());   
+            return true; 
+        }
+    }
 
 }

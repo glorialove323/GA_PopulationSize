@@ -28,7 +28,7 @@ public class GeneticAlgorithms {
     static {  
         popSize = 20;
         chromLen = 20;
-        maxGeneration  = 2000;  
+        maxGeneration  = 10000;  
         populationSize = 20;  
         crossoverRate = 0.65;  
         mutateRate = 0.015;
@@ -49,7 +49,7 @@ public class GeneticAlgorithms {
         DecimalFormat df = new DecimalFormat("######0.000"); 
         
         long startTime = System.currentTimeMillis();
-        while(!Evolve.isEvolutionDone()){
+        while(!Evolve.isEvolutionDone()&&(!Evolve.isPopSizeZero(pop))){
             Evolve.evolve(pop);
             pw.println("generation "+Evolve.getGeneration()+":current popsize  "+pop.getPopSize());
             pw.print("current bestIndividual: fitness" + df.format(pop.getBestFitness()));  

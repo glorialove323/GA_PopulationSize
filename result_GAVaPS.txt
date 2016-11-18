@@ -1,162 +1,98 @@
 初始种群:
-函数值:848.0675829953731
-函数值:716.9543322007951
-函数值:154.00667949737897
-函数值:105.65749860961003
-函数值:453.7381040237439
-函数值:2597.3579376763473
-函数值:309.95914334086336
-函数值:153.22272347204046
-函数值:103.24797707861785
-函数值:373.64349139955755
-函数值:2215.6521771122048
-函数值:398.6806685643842
-函数值:419.0945465102524
-函数值:18.296980412216858
-函数值:326.2630827128356
-函数值:4.729128833543703
-函数值:231.59908673074148
-函数值:94.57963213782531
-函数值:84.74358708917057
-函数值:478.43436765674835
+基因型:0010000001110011100000000011101000100111  表现型:x1=-3.740234375,x2=3.046875x3=-4.86328125x4=0.380859375	函数值:-2472.890511020466
+基因型:1000000110110010111010110001110111010111  表现型:x1=0.05859375,x2=2.94921875x3=1.943359375x4=-0.400390625	函数值:-0.03873201905020049
+基因型:1110001100000010000011110000000111110111  表现型:x1=3.8671875,x2=-4.6875x3=4.375x4=-0.087890625	函数值:-56.88562607566751
+基因型:1001110101001110101101010111000110001000  表现型:x1=1.142578125,x2=-2.705078125x3=-1.6015625x4=-1.171875	函数值:-24.318654445302304
+基因型:0100111001100100000100011000101100110000  表现型:x1=-1.943359375,x2=0.634765625x3=-4.04296875x4=2.96875	函数值:-2147.2699572616675
+基因型:0000010101110010001110000111111101011001  表现型:x1=-4.794921875,x2=2.841796875x3=0.302734375x4=3.369140625	函数值:-303.94174144077766
+基因型:1001000110011101111101010100011010000010  表现型:x1=0.68359375,x2=-0.322265625x3=-1.708984375x4=1.26953125	函数值:-5.808606149005374
+基因型:1001000000110010001010001100101111000010  表现型:x1=0.625,x2=2.83203125x3=0.48828125x4=4.39453125	函数值:-3.64296275256239
+基因型:0010000110001111111000101001000110000011  表现型:x1=-3.69140625,x2=-2.51953125x3=-3.3984375x4=-1.220703125	函数值:-469.9483683252092
+基因型:0111111010001110010011111100101110000111  表现型:x1=-0.05859375,x2=-2.7734375x3=4.86328125x4=3.818359375	函数值:-0.15439505424139757
+基因型:1011101101010100001001011000000010100000  表现型:x1=2.314453125,x2=-1.85546875x3=-1.5625x4=-3.4375	函数值:-41.79468906982848
+基因型:0010111010011010101010100010000011000010  表现型:x1=-3.18359375,x2=-0.83984375x3=1.328125x4=-3.10546875	函数值:-54.36133348121778
+基因型:1101100101110110111101100101000010110100  表现型:x1=3.486328125,x2=3.583984375x3=-1.0546875x4=-3.2421875	函数值:-1215.706111439373
+基因型:0001011010000010011100010100000000100000  表现型:x1=-4.12109375,x2=-4.619140625x3=-4.21875x4=-4.6875	函数值:-138.74581157675834
+基因型:1001111111111001111011011110010010100000  表现型:x1=1.240234375,x2=4.04296875x3=3.681640625x4=-3.4375	函数值:-43.93241299292882
+基因型:1010101100111011111101110001110100100110  表现型:x1=1.6796875,x2=4.365234375x3=-0.556640625x4=-2.12890625	函数值:-887.6809839436303
+基因型:0111001100100010111001110111100000110100  表现型:x1=-0.5078125,x2=0.44921875x3=-0.33203125x4=-4.4921875	函数值:-7.286883600734354
+基因型:0000101100010111110111101110100101010111  表现型:x1=-4.5703125,x2=-1.279296875x3=4.31640625x4=-1.650390625	函数值:-64.93652971011669
+基因型:1011110111101001101101000000011011000010  表现型:x1=2.412109375,x2=1.513671875x3=-2.490234375x4=1.89453125	函数值:-689.1893058955354
+基因型:1000110101100100001000010111011100000101  表现型:x1=0.517578125,x2=0.64453125x3=-4.091796875x4=2.548828125	函数值:-30.501400071404994
 
-generation 1:current popsize  17
-current bestIndividual: fitness3757.121    bestIndvidual: fitness3757.121
-generation 2:current popsize  18
-current bestIndividual: fitness3757.121    bestIndvidual: fitness3757.121
-generation 3:current popsize  16
-current bestIndividual: fitness3757.121    bestIndvidual: fitness3757.121
-generation 4:current popsize  14
-current bestIndividual: fitness3757.121    bestIndvidual: fitness3757.121
-generation 5:current popsize  14
-current bestIndividual: fitness3757.121    bestIndvidual: fitness3757.121
-generation 6:current popsize  13
-current bestIndividual: fitness3757.121    bestIndvidual: fitness3757.121
-generation 7:current popsize  14
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 8:current popsize  16
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 9:current popsize  15
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 10:current popsize  14
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 11:current popsize  13
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 12:current popsize  12
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 13:current popsize  11
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 14:current popsize  13
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 15:current popsize  10
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 16:current popsize  9
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 17:current popsize  9
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 18:current popsize  8
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 19:current popsize  8
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 20:current popsize  8
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 21:current popsize  9
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 22:current popsize  9
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 23:current popsize  10
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 24:current popsize  10
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 25:current popsize  10
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 26:current popsize  12
-current bestIndividual: fitness3666.728    bestIndvidual: fitness3757.121
-generation 27:current popsize  13
-current bestIndividual: fitness3700.708    bestIndvidual: fitness3757.121
-generation 28:current popsize  12
-current bestIndividual: fitness3700.708    bestIndvidual: fitness3757.121
-generation 29:current popsize  12
-current bestIndividual: fitness3700.708    bestIndvidual: fitness3757.121
-generation 30:current popsize  14
-current bestIndividual: fitness3700.708    bestIndvidual: fitness3757.121
-generation 31:current popsize  13
-current bestIndividual: fitness3700.708    bestIndvidual: fitness3757.121
-generation 32:current popsize  14
-current bestIndividual: fitness3700.708    bestIndvidual: fitness3757.121
-generation 33:current popsize  15
-current bestIndividual: fitness3700.708    bestIndvidual: fitness3757.121
-generation 34:current popsize  17
-current bestIndividual: fitness3700.708    bestIndvidual: fitness3757.121
-generation 35:current popsize  21
-current bestIndividual: fitness3700.708    bestIndvidual: fitness3757.121
-generation 36:current popsize  25
-current bestIndividual: fitness3700.708    bestIndvidual: fitness3757.121
-generation 37:current popsize  30
-current bestIndividual: fitness3840.293    bestIndvidual: fitness3840.293
-generation 38:current popsize  37
-current bestIndividual: fitness3860.144    bestIndvidual: fitness3860.144
-generation 39:current popsize  47
-current bestIndividual: fitness3860.144    bestIndvidual: fitness3860.144
-generation 40:current popsize  57
-current bestIndividual: fitness3860.144    bestIndvidual: fitness3860.144
-
-第40代群体:
-函数值:3700.7076320057276
-函数值:3700.7076320057276
-函数值:3700.7076320057276
-函数值:3551.32424563923
-函数值:3700.7076320057276
-函数值:3681.271386519723
-函数值:3666.727868126475
-函数值:3634.4402604974002
-函数值:3570.4863976811744
-函数值:3681.271386519723
-函数值:3700.7076320057276
-函数值:3700.7076320057276
-函数值:3700.7076320057276
-函数值:3840.2926697630264
-函数值:3700.7076320057276
-函数值:3551.32424563923
-函数值:3589.5554944059763
-函数值:3551.32424563923
-函数值:3527.5339185829484
-函数值:3681.271386519723
-函数值:3860.144236422423
-函数值:3527.5339185829484
-函数值:3623.2704509417617
-函数值:3700.7076320057276
-函数值:3681.271386519723
-函数值:3700.7076320057276
-函数值:3700.7076320057276
-函数值:3700.7076320057276
-函数值:3690.9830967443904
-函数值:3700.7076320057276
-函数值:2560.209016598943
-函数值:3700.7076320057276
-函数值:3551.32424563923
-函数值:3700.7076320057276
-函数值:3623.17616568316
-函数值:3628.0862278145055
-函数值:3551.32424563923
-函数值:3551.32424563923
-函数值:3527.5339185829484
-函数值:3700.7076320057276
-函数值:3527.5339185829484
-函数值:3860.144236422423
-函数值:1629.8358019743632
-函数值:3820.0924637636977
-函数值:3725.5565698613905
-函数值:3681.271386519723
-函数值:3551.32424563923
-函数值:3700.7076320057276
-函数值:3551.32424563923
-函数值:3604.039406042459
-函数值:3623.2704509417617
-函数值:3700.7076320057276
-函数值:2621.3235370391008
-函数值:3623.17616568316
-函数值:3068.6546677664483
-函数值:3700.7076320057276
-函数值:3700.7076320057276
-
+generation 1:current popsize  25
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 2:current popsize  33
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 3:current popsize  39
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 4:current popsize  48
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 5:current popsize  66
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 6:current popsize  70
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 7:current popsize  88
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 8:current popsize  110
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 9:current popsize  141
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 10:current popsize  174
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 11:current popsize  218
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 12:current popsize  265
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 13:current popsize  345
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 14:current popsize  425
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 15:current popsize  537
+current bestIndividual: fitness-0.039    bestIndvidual: fitness-0.039
+generation 16:current popsize  687
+current bestIndividual: fitness-0.088    bestIndvidual: fitness-0.039
+generation 17:current popsize  859
+current bestIndividual: fitness-0.088    bestIndvidual: fitness-0.039
+generation 18:current popsize  1062
+current bestIndividual: fitness-0.078    bestIndvidual: fitness-0.039
+generation 19:current popsize  1320
+current bestIndividual: fitness-0.078    bestIndvidual: fitness-0.039
+generation 20:current popsize  1644
+current bestIndividual: fitness-0.078    bestIndvidual: fitness-0.039
+generation 21:current popsize  2135
+current bestIndividual: fitness-0.051    bestIndvidual: fitness-0.039
+generation 22:current popsize  2744
+current bestIndividual: fitness-0.051    bestIndvidual: fitness-0.039
+generation 23:current popsize  3519
+current bestIndividual: fitness-0.051    bestIndvidual: fitness-0.039
+generation 24:current popsize  4461
+current bestIndividual: fitness-0.051    bestIndvidual: fitness-0.039
+generation 25:current popsize  5702
+current bestIndividual: fitness-0.051    bestIndvidual: fitness-0.039
+generation 26:current popsize  7309
+current bestIndividual: fitness-0.050    bestIndvidual: fitness-0.039
+generation 27:current popsize  9384
+current bestIndividual: fitness-0.048    bestIndvidual: fitness-0.039
+generation 28:current popsize  12004
+current bestIndividual: fitness-0.048    bestIndvidual: fitness-0.039
+generation 29:current popsize  15330
+current bestIndividual: fitness-0.046    bestIndvidual: fitness-0.039
+generation 30:current popsize  19459
+current bestIndividual: fitness-0.046    bestIndvidual: fitness-0.039
+generation 31:current popsize  24885
+current bestIndividual: fitness-0.046    bestIndvidual: fitness-0.039
+generation 32:current popsize  31662
+current bestIndividual: fitness-0.042    bestIndvidual: fitness-0.039
+generation 33:current popsize  40691
+current bestIndividual: fitness-0.031    bestIndvidual: fitness-0.031
+generation 34:current popsize  51890
+current bestIndividual: fitness-0.031    bestIndvidual: fitness-0.031
+generation 35:current popsize  66650
+current bestIndividual: fitness-0.031    bestIndvidual: fitness-0.031
+generation 36:current popsize  85716
+current bestIndividual: fitness-0.031    bestIndvidual: fitness-0.031
+generation 37:current popsize  109854
+current bestIndividual: fitness-0.031    bestIndvidual: fitness-0.031
+generation 38:current popsize  140690
+current bestIndividual: fitness-0.031    bestIndvidual: fitness-0.031

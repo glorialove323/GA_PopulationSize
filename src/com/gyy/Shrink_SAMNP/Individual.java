@@ -7,6 +7,7 @@ package com.gyy.Shrink_SAMNP;
  * @author Gloria
  * 
  */
+@SuppressWarnings("rawtypes")
 public class Individual implements Comparable{
     static int defaultGeneLength;
     static int defaultChromLength = 20;
