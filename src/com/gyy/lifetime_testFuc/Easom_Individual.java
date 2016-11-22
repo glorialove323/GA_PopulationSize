@@ -3,13 +3,11 @@
  */
 package com.gyy.lifetime_testFuc;
 
-import java.util.Random;
-
 /**
  * @author Gloria
- * 
+ *
  */
-public class Quartic_Individual {
+public class Easom_Individual {
     final int MinLT = 1;
 
     // GAVaPS
@@ -18,13 +16,13 @@ public class Quartic_Individual {
     // APGA
     //final int MaxLT = 15;
 
-    private double MAX = 1.28;
+    private double MAX = 100;
 
-    private double MIN = -1.28;
+    private double MIN = -100;
 
     public static double function(double x1, double x2) {
         double fun;
-        fun = 0-(Math.pow(x1, 4) + Math.random() + 2 * Math.pow(x2, 4) + Math.random());
-        return fun;
+        fun = -Math.cos(x1)*Math.cos(x2)*Math.exp(-(x1-Math.PI)*(x1-Math.PI)+(x2-Math.PI)*(x2-Math.PI));
+        return -fun;
     }
 }

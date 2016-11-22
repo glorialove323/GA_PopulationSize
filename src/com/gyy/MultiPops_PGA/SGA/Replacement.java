@@ -12,7 +12,7 @@ class FullReplacement extends IReplacement{
 		for(int i = 0; i < newIndividuals.length; i++){
 			double newFit = newIndividuals[i].calFitness();
 			population.setIndividual(i, newIndividuals[i], newFit);
-			if(newFit > newBestFit){											
+			if(newFit<=newBestFit){											
 				population.setBestPos(i);										
 				newBestFit = newFit;
 			}

@@ -78,7 +78,7 @@ public class ParEngine {
                     bestSoFar.updateBest(currentSolver, solverPosition);
                     ParPress.printCurrentSolverInfo(currentSolver, solverPosition);
 
-                    if (Stopper.foundOptimum()) {
+                    if (Stopper.fitnessCalls()) {
                         ParPress.printRunFinalStats(currentSolver, highestN);
                         return 1;
                     }

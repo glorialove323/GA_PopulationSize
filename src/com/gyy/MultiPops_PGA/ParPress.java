@@ -1,6 +1,7 @@
 package com.gyy.MultiPops_PGA;
 
 import java.io.BufferedWriter;
+import java.text.DecimalFormat;
 
 import com.gyy.MultiPops_PGA.SGA.Population;
 
@@ -45,10 +46,7 @@ public class ParPress{
 				  "\n#     ->    maxGenerations = " + Stopper.maxNGen            +
 				  "\n#     ->       maxFitCalls = " + Stopper.maxFitCalls        +					 
 				  "\n#     ->   allFitnessEqual = " + Stopper.allFitnessEqual    +
-				  "\n#     ->           epsilon = " + Stopper.epsilon            +
-				  "\n#     ->        maxOptimal = " + Stopper.maxOptimal         +
 				  "\n#     ->      foundBestFit = " + Stopper.foundBestFit       +
-				  "\n#     ->         foundOnes = " + Stopper.foundOnes          +
 				  "\n#" +
 				  "\n############################################################################\n";
 		printString(str);		
@@ -70,14 +68,14 @@ public class ParPress{
 	public static void printCurrentSolverInfo( Solvers currentSolver, int solverPosition){
 		if(ParEngine.iteration%30 == 0)
 			printString("\nIteration           Pop. Size           Generation           Avg. Fitness           BestCurrentFitness           BestFitnessSoFar");
-			printString(String.format("%5d %18d (%d) %16d %24.3f %25.3f %25.3f (%d)%n",
+			printString(String.format("%5d %18d (%d) %16d %24.3f %25.3f %25.5f (%d)%n",
 							ParEngine.iteration, 
 							currentSolver.getN(), solverPosition,
 							currentSolver.getCurrentGeneration(),
 							currentSolver.getAvgFitness(),
 							currentSolver.getCurrentPopulation().getBestFit(),
 							ParEngine.bestSoFar.getFitness(),
-							ParEngine.bestSoFar.getPopulation().getPopSize()
+							ParEngine.bestSoFar.getPopulation().getPopSize()  //(%d)%n
 					)
 
 				);	
@@ -103,13 +101,14 @@ public class ParPress{
 	 * 打印最终的运行结果信息
 	 */
 	public static void printRunFinalInfo(int r){
+	    DecimalFormat df = new DecimalFormat("######0.0000"); 
 		String str = "\n############################################################################" +
 	                 "\n#"                                                                            +
 					 "\n#               Success: " + Stopper.foundOptimum()                           + 
 					 "\n#  Current Success Rate: " + GeneticAlgorithms.nSuccess + "/" + (r+1)             +					 
 					 "\n#   Total Fitness Calls: " + ParEngine.fitCalls                               +
 					 "\n#  Best Population Size: " + ParEngine.bestSoFar.getPopulation().getPopSize()       +
-					 "\n#          Best Fitness: " + ParEngine.bestSoFar.getFitness()                 +
+					 "\n#          Best Fitness: " + df.format(ParEngine.bestSoFar.getFitness())                 +
 					 "\n#"                                                                            +
 					 "\n######## END RUN " + (r+1) + "/" + GeneticAlgorithms.parRuns + " #####"           + 
 					      "##### END RUN " + (r+1) + "/" + GeneticAlgorithms.parRuns + " #####"           +

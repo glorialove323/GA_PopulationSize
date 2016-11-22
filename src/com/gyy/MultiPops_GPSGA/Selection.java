@@ -4,7 +4,7 @@
  * 随机地从种群中挑选出一定数目（Tour）的个体，然后将最好的个体作为父代。
  * Tour取值范围：[2，Nind]
  */
-package com.gyy.MultiPos_GPSGA;
+package com.gyy.MultiPops_GPSGA;
 
 import java.util.Random;
 

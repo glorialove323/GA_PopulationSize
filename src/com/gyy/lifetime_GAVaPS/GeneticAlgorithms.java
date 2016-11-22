@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 
+
 /**
  * @author Gloria
  *
@@ -28,8 +29,8 @@ public class GeneticAlgorithms {
       
     static {  
         popSize = 20;
-        chromLen = 40;
-        maxGeneration  = 40;  
+        chromLen = 20;
+        maxGeneration  = 50;  
         populationSize = 20;  
         crossoverRate = 0.65;  
         mutateRate = 0.015;
@@ -52,13 +53,12 @@ public class GeneticAlgorithms {
         long startTime = System.currentTimeMillis();
         while(!Evolve.isEvolutionDone()&&(!Evolve.isPopSizeZero(pop))){
             Evolve.evolve(pop);
-            System.out.println("popsize: "+pop.getPopSize());
             pw.println("generation "+Evolve.getGeneration()+":current popsize  "+pop.getPopSize());
             pw.print("current bestIndividual: fitness" + df.format(pop.getBestFitness()));  
             System.out.println("current bestFitness： "+ df.format(pop.getBestFitness()));
             
-            System.out.println("current best individual: "+pop.findBestIndividual());
-           
+            System.out.println("current best individual: "+ pop.findBestIndividual());
+
             pw.print("    bestIndvidual: fitness" + df.format(pop.currentBest.getFitness()) );
             System.out.println("bestFitness: "+df.format(pop.currentBest.getFitness()));
             pw.println(""); 

@@ -1,5 +1,6 @@
 package com.gyy.Shrink_dynNP;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,17 +13,6 @@ public class dynNPSolver  {
     static{
        m_nInitalSize = 200;
     }
-
- /*   public static void evolve(Population pop)
-    {
-        Crossover cros = new UniformCrossover(0.65, 0.5);
-        Mutation muta = new Mutation(0.015);  
-        Individual[] inv = cros.cross(pop);
-        for (int i = 0; i < pop.getPopSize(); i++){
-            pop.setIndividual(i, inv[i], 0);
-        }
-        muta.mutate(pop.getIndividuals());
-    }*/
     
     public static double evolve(Population pop){
         int oldPopSize = pop.getPopSize();
@@ -71,13 +61,20 @@ public class dynNPSolver  {
             pop = newPop;
             i++;
         }
+        System.out.println("bestIndividual: "+pop.getIndividual(pop.getBestPos()));
+        
+        DecimalFormat df = new DecimalFormat("######0.0000"); 
+        
         for(i = 0; i < listBestFit.size(); i++){
         	System.out.println("--------------------------------");
-        	System.out.println("generation : "+i+" bestFit ="+listBestFit.get(i));
+        	System.out.println("generation : "+i+" bestFuc ="+df.format(1/listBestFit.get(i)));
         }
     }
     
     public static void main(String args[]){
+        long starttime = System.currentTimeMillis();
         run();
+        long endtime = System.currentTimeMillis();
+        System.out.println("the total evolve time: "+(endtime-starttime));
     }
 }

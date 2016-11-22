@@ -1,4 +1,4 @@
-package com.gyy.MultiPos_GPSGA;
+package com.gyy.MultiPops_GPSGA;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +50,7 @@ public class GPSGASolver  {
         m_List.add(i, pop1);
         m_List.add(i+1, pop2);
         
+        long starttime = System.currentTimeMillis();
         while (i < 7){
             evolve(pop1, M);
             evolve(pop2, M);
@@ -63,41 +64,13 @@ public class GPSGASolver  {
                 evolve(pop2, pop1.getF());
             }
         }
-        
-        /*
-        int nF1 = pop1.calFitnessValues();
-        int nF2 = pop2.calFitnessValues();
-        
-        while (i<5){
-            //System.out.println("i = "+i);
-            if (nF1 <= nF2){
-                evolve(pop1);
-                nF1 += pop1.calFitnessValues();
-            }
-            else{
-                evolve(pop2);
-                nF2 += pop2.calFitnessValues();
-            }
-            if (pop1.expired(pop2)){
-                i = i + 1;
-                pop1 = m_List.get(i);
-                nF1 = nF2;
-                pop2 = new Population(pop1.getPopSize() * 2);
-                m_List.add(i+1, pop2);
-                nF2 = pop2.calFitnessValues();
-                while (nF2 < nF1){
-                    evolve(pop2);
-                    nF2 += pop2.calFitnessValues();
-                }
-            }
-        }
-        */
+        long endtime = System.currentTimeMillis();
         for (j = 0; j < m_List.size(); j++){
             Population pop = m_List.get(j);
             System.out.print(j+":");
             pop.dumpMyself();
         }
-  
+        System.out.println("the total evolve time: "+(endtime-starttime));
     }
     
     public static void main(String args[]){

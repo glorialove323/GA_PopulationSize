@@ -28,7 +28,7 @@ public class GeneticAlgorithms {
     static {  
         popSize = 20;
         chromLen = 20;
-        maxGeneration  = 10000;  
+        maxGeneration  =500;  
         populationSize = 20;  
         crossoverRate = 0.65;  
         mutateRate = 0.015;
@@ -46,19 +46,19 @@ public class GeneticAlgorithms {
 
         System.out.println(pop.toString());
         pw.println("初始种群:\n" + pop);  
-        DecimalFormat df = new DecimalFormat("######0.000"); 
+        DecimalFormat df = new DecimalFormat("######0.0000"); 
         
         long startTime = System.currentTimeMillis();
         while(!Evolve.isEvolutionDone()&&(!Evolve.isPopSizeZero(pop))){
             Evolve.evolve(pop);
             pw.println("generation "+Evolve.getGeneration()+":current popsize  "+pop.getPopSize());
             pw.print("current bestIndividual: fitness" + df.format(pop.getBestFitness()));  
-            System.out.println("current bestFitness： "+ df.format(pop.getBestFitness()));
+            System.out.println("current bestFitness： "+ df.format(1/pop.getBestFitness()));
             
             System.out.println("current best individual: "+ pop.findBestIndividual());
 
             pw.print("    bestIndvidual: fitness" + df.format(pop.currentBest.getFitness()) );
-            System.out.println("bestFitness: "+df.format(pop.currentBest.getFitness()));
+            System.out.println("bestFitness: "+df.format(1/pop.currentBest.getFitness()));
             pw.println(""); 
             pw.flush();
         }  

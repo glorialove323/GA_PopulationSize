@@ -11,10 +11,10 @@ public class Step_Individual {
     final int MinLT = 1;
 
     // GAVaPS
-    final int MaxLT = 7;
+    //final int MaxLT = 7;
 
     // APGA
-    final int MaxLT = 15;
+    //final int MaxLT = 15;
 
     private double MAX = 100;
 

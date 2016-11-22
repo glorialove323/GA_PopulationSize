@@ -2,7 +2,7 @@
  * Crossover:
  * use uniform crossover
  */
-package com.gyy.MultiPos_GPSGA;
+package com.gyy.MultiPops_GPSGA;
 
 import java.util.Random;
 

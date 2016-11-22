@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.gyy.MultiPos_GPSGA;
+package com.gyy.MultiPops_GPSGA;
 
 /**
  * @author Gloria
@@ -14,6 +14,11 @@ public class Individual {
     public Chromosome chrom;
 
     private double x1,x2;
+    
+    private double MAX = 600;
+
+    private double MIN = -600;
+
 
     private double indivFitness = 0;
 
@@ -106,7 +111,7 @@ public class Individual {
     }
 
     private String codingVariable(double x) {
-        double y = (((x + 2.048) * 1023) / 4.096);
+        double y = (((x + Math.abs(MIN)) * Math.pow(2, 10)) / (MAX + Math.abs(MIN)));
         String code = Integer.toBinaryString((int) y);
 
         StringBuffer codeBuf = new StringBuffer(code);
@@ -120,29 +125,29 @@ public class Individual {
         int value;
         double decode;
         value = Integer.parseInt(gene, 2);
-        decode = value / 1023.0 * 4.096 - 2.048;
+        decode = value / (Math.pow(2, 10)) * (MAX + Math.abs(MIN)) + MIN;
         return decode;
     }
 
-   /* public String toString() {
+    public String toString() {
         String str = "";
         str += "函数值:" + function(x1,x2) + "\n";
 
         return str;
-    }*/
-
-    public static double function(double x1,double x2) {
-        double fun;
-        fun = (100*Math.pow((x1*x1-x2), 2)+Math.pow((1-x1), 2)); 
-
-        return fun;
     }
-
+    
+    public static double function(double x1, double x2) {
+        double fun;
+        double fun1 = x1*x1/4000+x2*x2/4000;
+        double fun2 = Math.cos(x1/Math.sqrt(1))*Math.cos(x2/Math.sqrt(2));
+        fun = fun1-fun2+1;
+        return 1/fun;
+    }
     // 随机产生个体
     public void generateIndividual() {
         chrom = new Chromosome(defaultChromLength);
-        x1 = Math.random() * 4.096 - 2.048;
-        x2 = Math.random() * 4.096 - 2.048;;
+        x1 = Math.random() * (MAX - MIN) + MIN;
+        x2 = Math.random() * (MAX - MIN) + MIN;
         coding();
         //calFitness();
     }

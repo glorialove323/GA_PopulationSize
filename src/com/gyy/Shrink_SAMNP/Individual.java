@@ -15,6 +15,10 @@ public class Individual implements Comparable{
     public Chromosome chrom;
 
     private double x1,x2;
+    
+    private double MAX = 2;
+
+    private double MIN = -2;
 
     private double indivFitness = 0;
 
@@ -42,15 +46,7 @@ public class Individual implements Comparable{
     }
     
     public char[] getIndividual(){return individual;}
-//
-//    public char[] copyIndividual(){
-//        char[] copy = new char[ParEngine.chromLen];
-//        for(int i = 0; i < ParEngine.chromLen; i++){
-//            char c = individual[i];
-//            copy[i] = c;
-//        }
-//        return copy;
-//    }
+    
     public Individual() {
         defaultGeneLength = 10;
         chrom = new Chromosome(defaultChromLength);
@@ -109,7 +105,7 @@ public class Individual implements Comparable{
     }
 
     private String codingVariable(double x) {
-        double y = (((x + 2.048) * 1023) / 4.096);
+        double y = (((x + Math.abs(MIN)) * Math.pow(2, 10)) / (MAX + Math.abs(MIN)));
         String code = Integer.toBinaryString((int) y);
 
         StringBuffer codeBuf = new StringBuffer(code);
@@ -123,33 +119,33 @@ public class Individual implements Comparable{
         int value;
         double decode;
         value = Integer.parseInt(gene, 2);
-        decode = value / 1023.0 * 4.096 - 2.048;
+        decode = value / (Math.pow(2, 10)) * (MAX + Math.abs(MIN)) + MIN;
         return decode;
     }
 
-   /* public String toString() {
+    public String toString() {
         String str = "";
         str += "函数值:" + function(x1,x2) + "\n";
 
         return str;
-    }*/
+    }
     
     public void dumpMyself(){
     	System.out.println("x1 = "+x1+", x2 = "+x2 + ",func = "+function(x1,x2));
     }
     
-    public static double function(double x1,double x2) {
+
+    public static double function(double x1, double x2) {
         double fun;
-        fun = (100*Math.pow((x1*x1-x2), 2)+Math.pow((1-x1), 2)); 
-
-        return fun;
+        fun = (1+Math.pow((x1+x2+1), 2)*(19-4*x1+3*x1*x1-14*x2+6*x1*x2+3*x2*x2))*(30+Math.pow((2*x1-3*x2), 2)*(18-32*x1+12*x1*x1+48*x2-36*x1*x2+27*x2*x2));
+        return 1/fun;
     }
-
+    
     // 随机产生个体
     public void generateIndividual() {
         chrom = new Chromosome(defaultChromLength);
-        x1 = Math.random() * 4.096 - 2.048;
-        x2 = Math.random() * 4.096 - 2.048;;
+        x1 = Math.random() * (MAX - MIN) + MIN;
+        x2 = Math.random() * (MAX - MIN) + MIN;
         coding();
         calFitness();
     }

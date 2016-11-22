@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.gyy.MultiPos_GPSGA;
+package com.gyy.MultiPops_GPSGA;
 
 
 /**

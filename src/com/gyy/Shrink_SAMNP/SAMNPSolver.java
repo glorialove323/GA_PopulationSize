@@ -1,5 +1,6 @@
 package com.gyy.Shrink_SAMNP;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class SAMNPSolver {
@@ -66,6 +67,9 @@ public class SAMNPSolver {
 		Individual inv = pop.getBestIndividual();
 		int p = 0;
 		generation = 1;
+		
+		long starttime = System.currentTimeMillis();
+		
 		while (nFeval < maxnfeval) {
 			nFeval += evolve(pop);
 			double fCurBestFitness = pop.getBestFit();
@@ -87,9 +91,13 @@ public class SAMNPSolver {
 				generation++;
 			}
 		}
-		System.out.println("Best : " + fBestFiness);
-		inv.dumpMyself();
 		
+		DecimalFormat df = new DecimalFormat("######0.0000"); 
+        
+		System.out.println("Best : " + df.format(1/fBestFiness));
+		inv.dumpMyself();
+		long endtime = System.currentTimeMillis();
+		System.out.println("the total evolve time: "+(endtime-starttime));
 	}
 
 	public static int getGeneration() {

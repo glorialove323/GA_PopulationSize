@@ -6,7 +6,7 @@ package com.gyy.MultiPops_PGA;
  * 
  */
 public class GeneticAlgorithms {
-    public static long parRuns = 3; 
+    public static long parRuns = 1; 
 
     public static int nSuccess = 0; 
     
@@ -16,11 +16,13 @@ public class GeneticAlgorithms {
         
         ParEngine parEngine = new ParEngine();
         ParPress.printInitialInfo();
+        long starttime = System.currentTimeMillis();
         for (int r = 0; r <ParEngine.parRuns; r++) {
             ParPress.printRunInitialInfo(r);
             nSuccess += parEngine.RUN(r);
             ParPress.printRunFinalInfo(r);
         }
-        ParPress.printFinalInfo();
+        long endtime = System.currentTimeMillis();
+        System.out.println("the total evolve time: "+(endtime-starttime));
     }
 }
