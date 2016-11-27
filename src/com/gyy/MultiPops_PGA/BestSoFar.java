@@ -8,14 +8,14 @@ package com.gyy.MultiPops_PGA;
 import com.gyy.MultiPops_PGA.SGA.Population;
 
 
-class BestSoFar{
+public class BestSoFar{
 	
 	private int        iteration;
 	private int        solverPosition;
 	private int        generation;
 	private Population population;
 	private int        bestPosition;
-	private double     fitness;
+	private double     fitness = -(Double.MAX_VALUE);
 	
 	
 	public BestSoFar(){}													
@@ -36,6 +36,7 @@ class BestSoFar{
 	
 	public void updateBest(Solvers solvers, int solverPosition){
 		this.iteration = ParEngine.iteration;
+		//fitness = -(Double.MAX_VALUE);
 		Population currentPopulation = solvers.getCurrentPopulation();
 		double currentFit = currentPopulation.getBestFit();
 		if(currentFit > fitness){											// NOTE: variable success == foundOnes(currentPopulation) is for testing only.

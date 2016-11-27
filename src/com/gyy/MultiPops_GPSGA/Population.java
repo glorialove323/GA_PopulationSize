@@ -1,9 +1,4 @@
-/**
- * 
- */
 package com.gyy.MultiPops_GPSGA;
-
-import com.gyy.MultiPops_PGA.ParEngine;
 
 /**
  * @author Gloria
@@ -20,9 +15,8 @@ public class Population {
 
     protected double[] fitness;
     
-    int m_nF = 0;
-    
-    
+    protected int m_nFitnessCalls = 0;
+
     /*
      * constructor of an empty population
      */
@@ -34,48 +28,45 @@ public class Population {
         fitness = new double[popSize];
         initPopulation();
     }
+    
     public Population(int popSize, Population pop) {
         this.popSize = popSize;
         individuals = new Individual[popSize];
         int i;
         for (i = 0; i < pop.getPopSize() && i < individuals.length; i++){
             individuals[i] = pop.getIndividualCopy(i);
-            individuals[i].change(true);
         }
         for (; i < individuals.length; i++){
             individuals[i] = new Individual();
-             individuals[i].generateIndividual();
+            individuals[i].generateIndividual();
         }
             
-        fitness = new double[popSize];
-        //initPopulation();
+        fitness = new double[popSize];        
+        for(i = 0; i < popSize; i++){
+        	fitness[i] = -Double.MAX_VALUE;
+        }
+        initPopulation();
     }
-    
     public void initPopulation(){
         for(int i =0;i<individuals.length;i++){
             individuals[i].generateIndividual();
-//            individuals[i].calFitness();
+            individuals[i].calFitness();
+            fitness[i] = individuals[i].getFitness();
         }
     }
     
-    //?????????
-    public boolean expired(Population comparePop){
-        System.out.println(comparePop.avgFit+", "+avgFit);
-//        if (comparePop.avgFit / avgFit <= 1.05){
-        if(avgFit>=comparePop.avgFit){
-            return true;
-        }       
-        return false;
+    public int getFitnessCalls(){
+    	return m_nFitnessCalls;
     }
     
+    public void incFinessCalls(int nFitnessCalls)
+    {
+    	m_nFitnessCalls += nFitnessCalls;
+    }
     public int getPopSize() {
         return this.popSize;
     }
-    
-    public int getF(){
-        return m_nF;
-    }
-    
+
     public Individual[] getIndividuals() {
         return individuals;
     }
@@ -132,55 +123,36 @@ public class Population {
         individuals[position] = indiv;
         fitness[position] = fit;
     }
-    
-    public void setIndividual(Individual indiv[]) {
-        for (int i = 0; i < indiv.length && i < popSize; i++){
-            individuals[i] = indiv[i];
-        }
-        
-    }
    
     //深拷贝
-    public Individual getIndividualCopy(int i){                   
+    public Individual getIndividualCopy(int i){                     
         Individual indiv = new Individual();
         indiv.generateIndividual();
         for(int j = 0; j < 20; j++)
-        {
             indiv.setAllele(j, individuals[i].getAllele(j));
-        }
-        indiv.calFitness();
-        indiv.change(false);
         return indiv;
     }
 
-    public int calFitnessValues() {
+    public void calFitnessValues() {
         worstFit = Double.MAX_VALUE;
         bestFit = Double.MIN_VALUE;
-        int nCalc = 0;
         for (int i = 0; i < this.popSize; i++) {
-            if (individuals[i].isChanged())
-            {
-                nCalc++;
-                double newFit = individuals[i].calFitness();
-                fitness[i] = newFit;
-                if (newFit < worstFit) { 
-                    worstPos = i; 
-                    worstFit = newFit;
-                }
-                if (newFit > bestFit) { 
-                    bestPos = i; 
-                    bestFit = newFit;
-                }
+            double newFit = individuals[i].calFitness();
+            fitness[i] = newFit;
+            if (newFit < worstFit) { 
+                worstPos = i; 
+                worstFit = newFit;
+            }
+            if (newFit > bestFit) { 
+                bestPos = i; 
+                bestFit = newFit;
             }
         }
-        m_nF += nCalc;
-        calAvgFitness();
-        return nCalc;
     }
 
     public double calAvgFitness() {
         double sumFit = 0;
-        double BestFit = 0;
+        double BestFit = -Double.MAX_VALUE;
         for (int i = 0; i < this.popSize; i++)
         {
             sumFit += fitness[i];
@@ -197,16 +169,24 @@ public class Population {
     public String toString() {
         String str = "";
         for (int i = 0; i < this.popSize; i++) {
-            for (int j = 0; j < ParEngine.chromLen; j++)
+            for (int j = 0; j < 20; j++)
                 str += individuals[i].getAllele(j);
             str += "\n";
         }
         return str;
     }
     
-    public void dumpMyself(){
-        System.out.println("size : "+popSize+", bestFitness is "+bestFit);
+    public boolean expired(Population comparePop){
+    	if (avgFit >= comparePop.avgFit){
+    		return true;
+    	}
+    	return false;
     }
+    
+    public void dumpMyself(){
+    	System.out.println("size :"+popSize+", current bestfitness : "+bestFit);
+    }
+    
 }
 
 /*

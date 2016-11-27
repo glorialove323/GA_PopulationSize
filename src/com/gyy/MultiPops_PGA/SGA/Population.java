@@ -110,7 +110,7 @@ public class Population {
 
     public void calFitnessValues() {
         worstFit = Double.MAX_VALUE;
-        bestFit = Double.MIN_VALUE;
+        bestFit = -(Double.MAX_VALUE);
         for (int i = 0; i < this.popSize; i++) {
             double newFit = individuals[i].calFitness();
             fitness[i] = newFit;
@@ -127,7 +127,7 @@ public class Population {
 
     public double calAvgFitness() {
         double sumFit = 0;
-        double BestFit = 0;
+        double BestFit = -(Double.MAX_VALUE);
         for (int i = 0; i < this.popSize; i++)
         {
             sumFit += fitness[i];

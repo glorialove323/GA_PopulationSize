@@ -68,7 +68,7 @@ public class ParEngine {
                             addNextSolver();
                     } else {
                         currentSolver.currentGeneration++;
-                        ParPress.printCurrentSolverInfo(currentSolver, solverPosition);
+                       // ParPress.printCurrentSolverInfo(currentSolver, solverPosition);
                         iteration++;
                         solverPosition++;
                     }
@@ -76,10 +76,10 @@ public class ParEngine {
                     iteration++;
                     boolean stopped = currentSolver.nextGeneration();
                     bestSoFar.updateBest(currentSolver, solverPosition);
-                    ParPress.printCurrentSolverInfo(currentSolver, solverPosition);
+                   // ParPress.printCurrentSolverInfo(currentSolver, solverPosition);
 
                     if (Stopper.fitnessCalls()) {
-                        ParPress.printRunFinalStats(currentSolver, highestN);
+                       // ParPress.printRunFinalStats(currentSolver, highestN);
                         return 1;
                     }
                     if (stopped) {

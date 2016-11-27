@@ -7,6 +7,7 @@
 package com.gyy.lifetime_APGA;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,48 +29,65 @@ public class GeneticAlgorithms {
     static {  
         popSize = 20;
         chromLen = 20;
-        maxGeneration  =500;  
+        maxGeneration  =50;  
         populationSize = 20;  
         crossoverRate = 0.65;  
         mutateRate = 0.015;
         reproductionRatio = 0.4;
-    }  
-    public static void main(String[] args)throws IOException{  
+    } 
+  
+    public static void run() throws IOException{  
 
-        FileWriter fw = new FileWriter("result_APGA.txt");  
-        BufferedWriter bw = new BufferedWriter(fw);  
-        PrintWriter pw = new PrintWriter(bw);  
-          
+    	Evolve.resetGeneration();
         Population pop = new Population(populationSize);  
         pop.initPopulation();
-  
+        
 
-        System.out.println(pop.toString());
-        pw.println("初始种群:\n" + pop);  
-        DecimalFormat df = new DecimalFormat("######0.0000"); 
+//        System.out.println(pop.toString());
+        //pw.println("初始种群:\n" + pop);  
+        DecimalFormat df = new DecimalFormat("######0.00000"); 
         
         long startTime = System.currentTimeMillis();
         while(!Evolve.isEvolutionDone()&&(!Evolve.isPopSizeZero(pop))){
             Evolve.evolve(pop);
-            pw.println("generation "+Evolve.getGeneration()+":current popsize  "+pop.getPopSize());
-            pw.print("current bestIndividual: fitness" + df.format(pop.getBestFitness()));  
-            System.out.println("current bestFitness： "+ df.format(1/pop.getBestFitness()));
+           // pw.println("generation "+Evolve.getGeneration()+":current popsize  "+pop.getPopSize());
+            //pw.print("current bestIndividual: fitness" + df.format(pop.getBestFitness())); 
             
-            System.out.println("current best individual: "+ pop.findBestIndividual());
-
-            pw.print("    bestIndvidual: fitness" + df.format(pop.currentBest.getFitness()) );
-            System.out.println("bestFitness: "+df.format(1/pop.currentBest.getFitness()));
-            pw.println(""); 
-            pw.flush();
+           // System.out.println("current bestFitness： "+ df.format(pop.getBestFitness()));
+            
+            //System.out.println("current best individual: "+ pop.findBestIndividual());
+            //pw.print("    bestIndvidual: fitness" + df.format(pop.currentBest.getFitness()) );
+            
+           // System.out.println("bestFitness: "+df.format(pop.currentBest.getFitness()));
+            
+           // pw.println(""); 
+           // pw.flush();
         }  
         long endTime = System.currentTimeMillis();
-        System.out.println("the total evolve time: " + (endTime - startTime));
-        pw.println();  
-        pw.println("第"+ Evolve.getGeneration()  + "代群体:\n" + pop);  
+        //System.out.println("the total evolve time: " + (endTime - startTime));
+        FileWriter fw = new FileWriter("data_txt/APGA_SphereModel_40.txt", true);  
+        BufferedWriter bw = new BufferedWriter(fw);  
+        PrintWriter pw = new PrintWriter(bw); 
+        pw.println("bestFitness: "+df.format(-pop.currentBest.getFitness())); 
+        pw.println("the total evolve time: " + (endTime - startTime));
         pw.flush();
-        pw.close();  
+        pw.close(); 
+        fw.close();
     }  
-      
-    public void print(){  
-    }  
+    
+    public static void main(String[] args)throws IOException{
+    	File f = new File("data_txt/APGA_SphereModel_40.txt");
+    	if (!f.exists())
+    	{
+    		f.createNewFile();
+    	}
+    	FileWriter fw =  new FileWriter(f);
+    	fw.write("");
+    	fw.close();
+    	for(int i = 0;i<10;i++){
+    		run();
+    		
+    	}
+    }
+
 }

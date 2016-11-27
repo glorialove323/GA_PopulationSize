@@ -22,7 +22,7 @@ public class SixHumpCamelBack_Individual {
 
     public static double function(double x1, double x2) {
         double fun;
-        fun = -(4 * Math.pow(x1, 2) - 2.1 * Math.pow(x1, 4) + Math.pow(x1, 6) / 3 + x1 * x2 - 4 * Math.pow(x2, 2) + 4
+        fun = (4 * Math.pow(x1, 2) - 2.1 * Math.pow(x1, 4) + Math.pow(x1, 6) / 3 + x1 * x2 - 4 * Math.pow(x2, 2) + 4
                 * Math.pow(x2, 4));
         return fun;
     }

@@ -24,6 +24,11 @@ public class Evolve {
             elimination(pop); 
             pop.findBestIndividual();
     }
+    
+    public static void resetGeneration(){
+    	generation = 0;
+    }
+    
 
     /*
      * GAVaPS的操作过程： 1、构造一个auxPopulation，种群规模为原来的规模的40% 2、对该种群进行交叉和变异
@@ -70,9 +75,9 @@ public class Evolve {
          * evaluate fitness of every new individuals and calculat liftime and set age 1
          */
         int newAuxPopSize = auxPopList.size();
-        System.out.println("generation: "+getGeneration());
-        System.out.println("oldPopSize: "+pop.getPopSize());
-        System.out.println("newAuzPopSize: "+newAuxPopSize);
+      //  System.out.println("generation: "+getGeneration());
+      //  System.out.println("oldPopSize: "+pop.getPopSize());
+      //  System.out.println("newAuzPopSize: "+newAuxPopSize);
         Population auxPopulation = new Population(0);
         for(int i =0;i<newAuxPopSize;i++){
             Individual mIndiv = auxPopList.get(i);
@@ -107,20 +112,20 @@ public class Evolve {
             int indivLifetime = indiv.getLiftime();
             int indivAge = indiv.getIndivAge();
 
-            System.out.println("indiv [" + i + "]" + " lifetime: " + indivLifetime + " age: " + indivAge);
+           // System.out.println("indiv [" + i + "]" + " lifetime: " + indivLifetime + " age: " + indivAge);
 
             // 执行删除机制
             if (indivAge >= indivLifetime) {
                 pop.deleteIndividual(i);
                 delete = delete + 1;
-                System.out.println("indiv [" + i + "]" + " lifetime: " + indivLifetime + " is removed...");
+              //  System.out.println("indiv [" + i + "]" + " lifetime: " + indivLifetime + " is removed...");
             } else {
                 i++;
-                System.out.println("lifetime >= age, cannot be removed...");
+              //  System.out.println("lifetime >= age, cannot be removed...");
             }
         }
-        System.out.println("delete individuals: " + delete);
-        System.out.println("after elimination, current poplation size:" + pop.getPopSize());
+      //  System.out.println("delete individuals: " + delete);
+      //  System.out.println("after elimination, current poplation size:" + pop.getPopSize());
 
     }
 
@@ -202,10 +207,10 @@ public class Evolve {
     
     public static boolean isPopSizeZero(Population pop){
         if(pop.getPopSize()>2){
-            System.out.println("popsize: "+pop.getPopSize());
+           // System.out.println("popsize: "+pop.getPopSize());
             return false;
         }else{
-            System.out.println("popsize: "+pop.getPopSize());   
+           // System.out.println("popsize: "+pop.getPopSize());   
             return true; 
         }
     }

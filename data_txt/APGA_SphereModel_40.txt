@@ -1,0 +1,20 @@
+bestFitness: 0.00005
+the total evolve time: 12
+bestFitness: 0.00005
+the total evolve time: 5
+bestFitness: 0.00005
+the total evolve time: 7
+bestFitness: 0.00006
+the total evolve time: 3
+bestFitness: 0.00005
+the total evolve time: 4
+bestFitness: 0.00006
+the total evolve time: 4
+bestFitness: 0.00006
+the total evolve time: 3
+bestFitness: 0.00005
+the total evolve time: 3
+bestFitness: 0.00005
+the total evolve time: 3
+bestFitness: 0.00006
+the total evolve time: 2

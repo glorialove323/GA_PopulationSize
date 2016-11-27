@@ -101,7 +101,7 @@ public class ParPress{
 	 * 打印最终的运行结果信息
 	 */
 	public static void printRunFinalInfo(int r){
-	    DecimalFormat df = new DecimalFormat("######0.0000"); 
+	    DecimalFormat df = new DecimalFormat("######0.00000"); 
 		String str = "\n############################################################################" +
 	                 "\n#"                                                                            +
 					 "\n#               Success: " + Stopper.foundOptimum()                           + 
@@ -130,16 +130,3 @@ public class ParPress{
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
