@@ -15,79 +15,69 @@ import java.text.DecimalFormat;
 
 /**
  * @author Gloria
- *
+ * 
  */
 public class GeneticAlgorithms {
-    public static double crossoverRate;//交叉概率  
-    public static double mutateRate;//变异概率  
-    public static int populationSize;//群体大小  
-    public static int maxGeneration;
+    public static double crossoverRate;// 交叉概率
+
+    public static double mutateRate;// 变异概率
+
+    public static int populationSize;// 群体大小
+
+    public static int maxFitnessCalls;
+
     public static double reproductionRatio;
+
     public static int chromLen;
+
     public static int popSize;
-      
-    static {  
+
+    static {
         popSize = 20;
         chromLen = 20;
-        maxGeneration  =50;  
-        populationSize = 20;  
-        crossoverRate = 0.65;  
+        populationSize = 20;
+        crossoverRate = 0.65;
         mutateRate = 0.015;
         reproductionRatio = 0.4;
-    } 
-  
-    public static void run() throws IOException{  
+        maxFitnessCalls = 100000;
+    }
 
-    	Evolve.resetGeneration();
-        Population pop = new Population(populationSize);  
+    static StringBuffer buf = new StringBuffer();
+
+    public static void run() throws IOException {
+
+        Evolve.reset();
+        Population pop = new Population(populationSize);
         pop.initPopulation();
-        
 
-//        System.out.println(pop.toString());
-        //pw.println("初始种群:\n" + pop);  
-        DecimalFormat df = new DecimalFormat("######0.00000"); 
-        
-        long startTime = System.currentTimeMillis();
-        while(!Evolve.isEvolutionDone()&&(!Evolve.isPopSizeZero(pop))){
+        while (!Evolve.isEvolutionDone() && (!Evolve.isPopSizeZero(pop))) {
             Evolve.evolve(pop);
-           // pw.println("generation "+Evolve.getGeneration()+":current popsize  "+pop.getPopSize());
-            //pw.print("current bestIndividual: fitness" + df.format(pop.getBestFitness())); 
-            
-           // System.out.println("current bestFitness： "+ df.format(pop.getBestFitness()));
-            
-            //System.out.println("current best individual: "+ pop.findBestIndividual());
-            //pw.print("    bestIndvidual: fitness" + df.format(pop.currentBest.getFitness()) );
-            
-           // System.out.println("bestFitness: "+df.format(pop.currentBest.getFitness()));
-            
-           // pw.println(""); 
-           // pw.flush();
-        }  
-        long endTime = System.currentTimeMillis();
-        //System.out.println("the total evolve time: " + (endTime - startTime));
-        FileWriter fw = new FileWriter("data_txt/APGA_SphereModel_40.txt", true);  
-        BufferedWriter bw = new BufferedWriter(fw);  
-        PrintWriter pw = new PrintWriter(bw); 
-        pw.println("bestFitness: "+df.format(-pop.currentBest.getFitness())); 
-        pw.println("the total evolve time: " + (endTime - startTime));
+
+            buf.append(Evolve.m_nFitnessCalls + "\t" + pop.getPopSize() + "\t"
+                    + (-pop.getCurBestIndividual().getFitness()) +"\r\n");
+        }
+        FileWriter fw = new FileWriter("data_txt/APGA_Branin.txt", true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter pw = new PrintWriter(bw);
+        pw.println(buf);
+        buf.delete(0, buf.length());// 要清空stringbuffer
         pw.flush();
-        pw.close(); 
+        pw.close();
         fw.close();
-    }  
-    
-    public static void main(String[] args)throws IOException{
-    	File f = new File("data_txt/APGA_SphereModel_40.txt");
-    	if (!f.exists())
-    	{
-    		f.createNewFile();
-    	}
-    	FileWriter fw =  new FileWriter(f);
-    	fw.write("");
-    	fw.close();
-    	for(int i = 0;i<10;i++){
-    		run();
-    		
-    	}
+    }
+
+    public static void main(String[] args) throws IOException {
+        File f = new File("data_txt/APGA_Branin.txt");
+        if (!f.exists()) {
+            f.createNewFile();
+        }
+        FileWriter fw = new FileWriter(f);
+        fw.write("");
+        fw.close();
+        for (int i = 0; i < 10; i++) {
+            buf.append("RUN \t" + (i + 1) + "\r\n");
+            run();
+        }
     }
 
 }

@@ -46,6 +46,11 @@ public class Population {
             popList.add(indiv);
         }
     }
+    
+    // 返回最好的个体
+    public Individual getCurBestIndividual(){
+        return currentBest;
+    }
 
     // 初始化种群
     public void initPopulation() {
@@ -94,6 +99,9 @@ public class Population {
     
     //获得种群中最佳的个体
     public Individual findBestIndividual(){
+        if (popList.size() == 0){
+            return null;
+        }
         bestIndividual = worstIndividual = popList.get(0);  
         for(int i = 1; i <getPopSize();i++){  
             if(popList.get(i).getFitness() > bestIndividual.getFitness()){  

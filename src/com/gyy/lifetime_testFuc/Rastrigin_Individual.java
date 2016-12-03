@@ -20,9 +20,10 @@ public class Rastrigin_Individual {
 
     private double MIN = -5.12;
 
+    //value = 0
     public static double function(double x1, double x2) {
         double fun;
-        fun = 0-(Math.pow(x1, 2) - 10 * Math.cos(2 * Math.PI * x1) + 10 + Math.pow(x2, 2) - 10
+        fun = (Math.pow(x1, 2) - 10 * Math.cos(2 * Math.PI * x1) + 10 + Math.pow(x2, 2) - 10
                 * Math.cos(2 * Math.PI * x2) + 10);
         return fun;
     }

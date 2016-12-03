@@ -16,13 +16,19 @@ import java.util.List;
  */
 public class Evolve {
     private static int generation; //种群的代数  
-    
+    public static int m_nFitnessCalls;
+    public static void reset(){
+        generation = 0;
+        m_nFitnessCalls = 0;
+    }
     public static void evolve(Population pop) {
              incIndivAge(pop);
              incGeneration();
-             recombine(pop); 
+             recombine(pop);
+             m_nFitnessCalls += pop.getPopSize();
              elimination(pop); 
              pop.findBestIndividual();
+             generation++;             
     }
     public static void resetGeneration(){
     	generation = 0;
@@ -198,8 +204,10 @@ public class Evolve {
     }
     //判断进化是否完成  
     public static boolean isEvolutionDone(){  
-        if(getGeneration() < GeneticAlgorithms.maxGeneration)  
-            return false;  
+//        if(getGeneration() < GeneticAlgorithms.maxGeneration)  
+//            return false;  
+        if(m_nFitnessCalls < GeneticAlgorithms.maxFitnessCalls)
+            return false;
         return true;      
     }  
     

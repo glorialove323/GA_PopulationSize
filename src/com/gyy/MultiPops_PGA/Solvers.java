@@ -3,6 +3,8 @@
  */
 package com.gyy.MultiPops_PGA;
 
+import java.io.IOException;
+
 import com.gyy.MultiPops_PGA.SGA.Population;
 
 

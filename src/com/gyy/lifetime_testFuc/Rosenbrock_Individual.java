@@ -26,6 +26,7 @@ public class Rosenbrock_Individual {
 
     private double MIN = -2.048;
 
+    //value = 3905
     public static double function(double x1, double x2) {
         double fun;
         fun = (100 * (x1 * x1 - x2) * (x1 * x1 - x2) + (1 - x1) * (1 - x1));

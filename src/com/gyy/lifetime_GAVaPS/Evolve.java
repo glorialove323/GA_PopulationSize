@@ -16,15 +16,20 @@ import java.util.List;
  */
 public class Evolve {
     private static int generation; //种群的代数  
+    public static int m_nFitnessCalls;
     
     public static void evolve(Population pop){
             incIndivAge(pop);
             incGeneration();
             recombine(pop); 
+            m_nFitnessCalls += pop.getPopSize();
             elimination(pop); 
             pop.findBestIndividual();
     }
-    
+    public static void reset(){
+        generation = 0;
+        m_nFitnessCalls = 0;
+    }
     public static void resetGeneration(){
     	generation = 0;
     }
@@ -112,16 +117,16 @@ public class Evolve {
             int indivLifetime = indiv.getLiftime();
             int indivAge = indiv.getIndivAge();
 
-           // System.out.println("indiv [" + i + "]" + " lifetime: " + indivLifetime + " age: " + indivAge);
+          //  System.out.println("indiv [" + i + "]" + " lifetime: " + indivLifetime + " age: " + indivAge);
 
             // 执行删除机制
             if (indivAge >= indivLifetime) {
                 pop.deleteIndividual(i);
                 delete = delete + 1;
-              //  System.out.println("indiv [" + i + "]" + " lifetime: " + indivLifetime + " is removed...");
+          //      System.out.println("indiv [" + i + "]" + " lifetime: " + indivLifetime + " is removed...");
             } else {
                 i++;
-              //  System.out.println("lifetime >= age, cannot be removed...");
+          //      System.out.println("lifetime >= age, cannot be removed...");
             }
         }
       //  System.out.println("delete individuals: " + delete);
@@ -200,8 +205,10 @@ public class Evolve {
     }
     //判断进化是否完成  
     public static boolean isEvolutionDone(){  
-        if(getGeneration() < GeneticAlgorithms.maxGeneration)  
-            return false;  
+//        if(getGeneration() < GeneticAlgorithms.maxGeneration)  
+//            return false;  
+        if(m_nFitnessCalls < GeneticAlgorithms.maxFitnessCalls)
+            return false;
         return true;      
     }
     

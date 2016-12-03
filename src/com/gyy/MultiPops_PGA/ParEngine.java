@@ -5,6 +5,10 @@
 
 package com.gyy.MultiPops_PGA;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import com.gyy.MultiPops_PGA.SGA.SGASolver;
@@ -33,7 +37,7 @@ public class ParEngine {
         chromLen = 20;
     }
 
-    public int RUN(int nRun) {
+    public int RUN(int nRun) throws IOException {
         fitCalls = 0;
         iteration = 0;
         Stopper.setSuccess(false);
@@ -55,7 +59,7 @@ public class ParEngine {
         private PEA() {
         }
 
-        private int run(int nRun) {
+        private int run(int nRun) throws IOException {
             solverPosition = 0;
             highestN = N0;
             lastSolver = 0;
@@ -76,6 +80,8 @@ public class ParEngine {
                     iteration++;
                     boolean stopped = currentSolver.nextGeneration();
                     bestSoFar.updateBest(currentSolver, solverPosition);
+                    ParPress.printData();
+                    
                    // ParPress.printCurrentSolverInfo(currentSolver, solverPosition);
 
                     if (Stopper.fitnessCalls()) {

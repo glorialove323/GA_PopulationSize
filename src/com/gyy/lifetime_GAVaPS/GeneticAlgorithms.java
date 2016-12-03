@@ -23,7 +23,7 @@ public class GeneticAlgorithms {
     public static double crossoverRate;//交叉概率  
     public static double mutateRate;//变异概率  
     public static int populationSize;//群体大小  
-    public static int maxGeneration;
+    public static int maxFitnessCalls;
     public static double reproductionRatio;
     public static int chromLen;
     public static int popSize;
@@ -31,53 +31,36 @@ public class GeneticAlgorithms {
     static {  
         popSize = 20;
         chromLen = 20;
-        maxGeneration  = 40;  
         populationSize = 20;  
         crossoverRate = 0.65;  
         mutateRate = 0.015;
         reproductionRatio = 0.4;
+        maxFitnessCalls = 100000;
     }  
+    static StringBuffer  buf = new StringBuffer();
     
     public static void run() throws IOException{   
     	
-    	Evolve.resetGeneration();         
+    	Evolve.reset();         
         Population pop = new Population(populationSize);  
         pop.initPopulation();
-  
 
-        //System.out.println(pop.toString());
-       // pw.println("初始种群:\n" + pop);  
-        DecimalFormat df = new DecimalFormat("######0.00000"); 
-        
-        long startTime = System.currentTimeMillis();
         while(!Evolve.isEvolutionDone()&&(!Evolve.isPopSizeZero(pop))){
-            Evolve.evolve(pop);
-           // pw.println("generation "+Evolve.getGeneration()+":current popsize  "+pop.getPopSize());
-           // pw.print("current bestIndividual: fitness" + df.format(pop.getBestFitness()));  
-           // System.out.println("current bestFitness： "+ df.format(1/pop.getBestFitness()));
-            
-           // System.out.println("current best individual: "+ pop.findBestIndividual());
-
-           // pw.print("    bestIndvidual: fitness" + df.format(pop.currentBest.getFitness()) );
-           // System.out.println("bestFitness: "+df.format(1/pop.currentBest.getFitness()));
-           // pw.println(""); 
-           // pw.flush();
-        }  
-        long endTime = System.currentTimeMillis();
-        //System.out.println("the total evolve time: " + (endTime - startTime));
-        
-        FileWriter fw = new FileWriter("data_txt/GAVAPS_SphereModel_40.txt", true);  
+            Evolve.evolve(pop);           
+            buf.append(Evolve.m_nFitnessCalls+"\t"+pop.getPopSize()+"\t"+(-pop.currentBest.getFitness()+"\r\n"));
+        }          
+        FileWriter fw = new FileWriter("data_txt/GAVAPS_Branin.txt", true);  
         BufferedWriter bw = new BufferedWriter(fw);  
         PrintWriter pw = new PrintWriter(bw); 
-        pw.println("bestFitness: "+df.format(1/pop.currentBest.getFitness())); 
-        pw.println("the total evolve time: " + (endTime - startTime));
+        pw.print(buf);
+        buf.delete(0, buf.length());
         pw.flush();
         pw.close(); 
         fw.close();
     }  
     
     public static void main(String[] args)throws IOException{
-    	File f = new File("data_txt/GAVAPS_SphereModel_40.txt");
+    	File f = new File("data_txt/GAVAPS_Branin.txt");
     	if (!f.exists())
     	{
     		f.createNewFile();
@@ -86,8 +69,8 @@ public class GeneticAlgorithms {
     	fw.write("");
     	fw.close();
     	for(int i = 0;i<10;i++){
-    		run();
-    		
+    	    buf.append("RUN \t"+(i+1)+"\r\n");
+    		run();  		
     	}
     }
 

@@ -32,6 +32,6 @@ public class Branin_Individual {
         int e = 10;
         double f = 1/(8*Math.PI);
         fun = a*(x2-b*x1*x1+c*x1-d)*(x2-b*x1*x1+c*x1-d)+e*(1-f)*Math.cos(x1)+e;
-        return -fun;
+        return fun;
     }
 }

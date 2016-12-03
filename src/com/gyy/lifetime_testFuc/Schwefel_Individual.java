@@ -20,6 +20,7 @@ public class Schwefel_Individual {
 
     private double MIN = -500;
 
+    //value = -837
     public static double function(double x1, double x2) {
         double fun;
         fun = -x1*Math.sin(Math.sqrt((Math.abs(x1))))+(-x2*Math.sin(Math.sqrt((Math.abs(x2)))));

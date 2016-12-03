@@ -19,6 +19,8 @@ public class Population {
 
     protected double[] fitness;
     
+    protected int m_nFitnessCalls = 0;
+    
     
     /*
      * constructor of an empty population
@@ -179,5 +181,14 @@ public class Population {
     
     public void dumpMyself(){
         System.out.println("size : "+popSize+", bestFitness is "+bestFit);
+    }
+    
+    public void setFinessCalls(int nFitnessCalls)
+    {
+        m_nFitnessCalls = nFitnessCalls;
+    }
+    
+    public int getFitnessCalls(){
+        return m_nFitnessCalls;
     }
 }

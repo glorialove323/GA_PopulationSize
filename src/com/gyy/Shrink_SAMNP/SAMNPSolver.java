@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SAMNPSolver {
@@ -16,10 +17,15 @@ public class SAMNPSolver {
 	public static int maxnfeval = 100000;
 	public static int pmax = 4;
 	public static double fPopsizeFloat = 0.05;
+	static int m_nFitnessCalls;
 
 	static {
 		m_nInitalSize = 200;
 	}
+	 
+	static StringBuffer  buf = new StringBuffer();
+    static List<Double> listBestFit = new ArrayList<Double>();
+	  
 	public static Population IncreaseNP(Population pop) {
 		int nPopSize = pop.getPopSize();
 		nPopSize = (int) ((double) nPopSize * (double) (1.0 + fPopsizeFloat));
@@ -52,31 +58,36 @@ public class SAMNPSolver {
 		cross.cross(pop);
 		muta.mutate(pop.getIndividuals());
 		pop.calFitnessValues();
-		return pop.getFeval();
-	}
+		m_nFitnessCalls+=pop.getPopSize();    
+		return m_nFitnessCalls;		
+		//return pop.getFeval();
+}
 
 	public static void run() throws IOException {
 		Population pop = new IndivPopulation(m_nInitalSize);
 		int nFeval = 0;
 		pop.calFitnessValues();
 		nFeval = pop.getPopSize();
-		double fBestFiness = -Double.MAX_VALUE;
+		double fBestFitness = -Double.MAX_VALUE;
 		Individual inv = pop.getBestIndividual();
 		int p = 0;
 		generation = 1;
 
-		long starttime = System.currentTimeMillis();
+//		long starttime = System.currentTimeMillis();
 
 		while (nFeval < maxnfeval) {
 			nFeval += evolve(pop);
+	        buf.append(nFeval+"\t"+pop.getPopSize()+"\t");
 			double fCurBestFitness = pop.getBestFit();
-			if (fCurBestFitness > fBestFiness) {
-				fBestFiness = fCurBestFitness;
+			if (fCurBestFitness > fBestFitness) {
+				fBestFitness = fCurBestFitness;
+				listBestFit.add(fBestFitness);
 				inv = pop.getBestIndividual();
 				p = 0;
 			} else {
 				p++;
 			}
+			buf.append(-(getCurrentBestFit())+"\r\n");
 			//System.out.print(generation + ": ");
 		//	pop.dumpMyself();
 			if (p >= 4) {
@@ -87,20 +98,23 @@ public class SAMNPSolver {
 				pop = DecreaseNP(pop);
 				generation++;
 			}
+
 		}
 
-		DecimalFormat df = new DecimalFormat("######0.00000");
+//		DecimalFormat df = new DecimalFormat("######0.00000");
 
 	//	System.out.println("BestFitness : " + df.format(-fBestFiness));
 	//	inv.dumpMyself();
-		long endtime = System.currentTimeMillis();
+//		long endtime = System.currentTimeMillis();
 	//	System.out.println("the total evolve time: " + (endtime - starttime));
 
-		FileWriter fw = new FileWriter("data_txt/SAMNP_SphereModel_10000.txt", true);
+		FileWriter fw = new FileWriter("data_txt/SAMNP_Branin.txt", true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		PrintWriter pw = new PrintWriter(bw);
-		pw.println("bestFitness: " + df.format(-fBestFiness));
-		pw.println("the total evolve time: " + (endtime - starttime));
+		pw.print(buf);
+		buf.delete(0, buf.length());
+//		pw.println("bestFitness: " + df.format(1/fBestFiness));
+//		pw.println("the total evolve time: " + (endtime - starttime));
 		pw.flush();
 		pw.close();
 		fw.close();
@@ -111,7 +125,7 @@ public class SAMNPSolver {
 	}
 
 	public static void main(String[] args) throws IOException {
-		File f = new File("data_txt/SAMNP_SphereModel_10000.txt");
+		File f = new File("data_txt/SAMNP_Branin.txt");
 		if (!f.exists()) {
 			f.createNewFile();
 		}
@@ -119,7 +133,23 @@ public class SAMNPSolver {
 		fw.write("");
 		fw.close();
 		for (int i = 0; i < 10; i++) {
+		    buf.append("run \t"+(i+1)+"\r\n");
+		    reset();
 			run();
 		}
 	}
+	
+    public static void reset(){
+        m_nFitnessCalls = 0;
+    }
+    
+    public static double getCurrentBestFit(){
+        double fBestFit = -Double.MAX_VALUE;
+        for(int i = 0; i < listBestFit.size(); i++){
+            if(listBestFit.get(i)>fBestFit){
+                fBestFit= listBestFit.get(i);
+            }           
+        }
+        return fBestFit;
+    }
 }

@@ -20,6 +20,7 @@ public class SphereModel_Individual {
     
     private double MIN = -100.0;
  
+    //value = 0
     public static double function(double x1, double x2){
         double fun;
         fun = 1/(x1*x1+x2*x2);

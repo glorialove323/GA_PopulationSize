@@ -1,6 +1,9 @@
 package com.gyy.MultiPops_PGA;
 
 import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 
 import com.gyy.MultiPops_PGA.SGA.Population;
@@ -128,5 +131,19 @@ public class ParPress{
 		try{testFileOutStats.close();}
 		catch(Exception e){System.err.println("ERROR: " + e.getMessage());}
 	}
+	
+    public static void printData() throws IOException {
+        StringBuffer buf = new StringBuffer();
+        buf.append(ParEngine.fitCalls + "\t" + ParEngine.bestSoFar.getPopulation().getPopSize() + "\t"
+                + (-ParEngine.bestSoFar.getFitness()) + "\r\n");
+        FileWriter fw = new FileWriter("data_txt/PGA_Branin.txt", true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter pw = new PrintWriter(bw);
+        pw.print(buf);
+        buf.delete(0, buf.length());
+        pw.flush();
+        pw.close();
+        fw.close();
+    }
 	
 }

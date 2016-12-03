@@ -1,5 +1,11 @@
 package com.gyy.MultiPops_PGA.SGA;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.Buffer;
+
 import com.gyy.MultiPops_PGA.*;
 
 public class SGASolver extends Solvers {
@@ -20,6 +26,8 @@ public class SGASolver extends Solvers {
     private Crossover crossover; 
     private Mutation mutation; 
     private IReplacement replacement;
+    
+    static StringBuffer  buf = new StringBuffer();
 
     public SGASolver(int currentN) {
         this.N = currentN;
@@ -47,7 +55,7 @@ public class SGASolver extends Solvers {
         return avgFitness;
     }
 
-    public boolean nextGeneration() {
+    public boolean nextGeneration(){
         currentGeneration++;
         SelectedSet selectedSet = selection.select(currentPopulation);                                                                       // SELECTION.
         Individual[] newIndividuals = crossover.cross(selectedSet);

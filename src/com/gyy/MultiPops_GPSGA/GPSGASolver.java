@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.ObjectInputStream.GetField;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,14 @@ import java.util.List;
 public class GPSGASolver  {
 
     static List<Population> m_List = null;
-    static int MaxFitnessCalls = 10000;
+    static int MaxFitnessCalls = 100000;
     public static int m_nInitalSize;
+    static int m_nFitnessCalls;
     static{
        m_nInitalSize = 20;
     }
+    
+    static StringBuffer  buf = new StringBuffer();
 
     public static void evolve(Population pop)
     {
@@ -29,20 +33,16 @@ public class GPSGASolver  {
         muta.mutate(pop.getIndividuals());
     }
     public static boolean stop(){
-    	//
-    	int nFitnessCallsCount = 0;
         for (int i = 0; i < m_List.size(); i++){
-            nFitnessCallsCount += m_List.get(i).getFitnessCalls();
+            m_nFitnessCalls += m_List.get(i).getFitnessCalls();
         }
-//        System.out.println("nFitnessCallsCount = "+nFitnessCallsCount);
-        if (nFitnessCallsCount > MaxFitnessCalls){
+        if (m_nFitnessCalls > MaxFitnessCalls){
         	return true;
         }
     	return false;
     }
     public static void evolve(Population pop, int fitnessCalls){
-    	
-    	while(fitnessCalls > 0){
+    	while(fitnessCalls>0){
     		Selection selection = new TourWithoutReplacement(pop.getPopSize(), 2);
         	SelectedSet selectedSet = selection.select(pop);
         	
@@ -57,6 +57,7 @@ public class GPSGASolver  {
             
             fitnessCalls -= newIndividuals.length;
             pop.incFinessCalls(newIndividuals.length);
+            buf.append(pop.getFitnessCalls()+"\t"+pop.getPopSize()+"\t"+(-getCurrentBestFit())+"\r\n");
     	}
 
     }
@@ -72,9 +73,9 @@ public class GPSGASolver  {
         m_List.add(i, pop1);
         m_List.add(i+1, pop2);
         
-        long starttime = System.currentTimeMillis();
         while (stop() == false){
             evolve(pop1, M);
+            buf.append(pop1.m_nFitnessCalls+"\t"+pop1.getPopSize()+"\t");
             evolve(pop2, M);
             if (pop1.expired(pop2)){
                 i++;
@@ -85,36 +86,33 @@ public class GPSGASolver  {
                 evolve(pop2, pop1.getFitnessCalls());
             }
         }
-        long endtime = System.currentTimeMillis();
-        int nFitnessCallsCount = 0;
-        double fBestFit = -Double.MAX_VALUE;
-        for (j = 0; j < m_List.size(); j++){
-            Population pop = m_List.get(j);
-            
-            //pop.dumpMyself();
-            
-            if (fBestFit < pop.getBestFit()){
-            	fBestFit = pop.getBestFit();
-            }
-            nFitnessCallsCount += pop.getFitnessCalls();
-        }
-        DecimalFormat df = new DecimalFormat("######0.00000");
-       // System.out.println("the best fitness value is "+df.format(fBestFit) );
-      //  System.out.println("the fitnessCalls is "+nFitnessCallsCount);
-       // System.out.println("the total evolve time: "+(endtime-starttime));
-        
-        FileWriter fw = new FileWriter("data_txt/GPSGA_SphereModel_10000.txt", true);  
+
+        FileWriter fw = new FileWriter("data_txt/GPSGA_Goldstein.txt", true);  
         BufferedWriter bw = new BufferedWriter(fw);  
         PrintWriter pw = new PrintWriter(bw); 
-        pw.println("bestFitness: "+df.format(-fBestFit)); 
-        pw.println("the total evolve time: " + (endtime - starttime));
+        pw.print(buf);
+        buf.delete(0, buf.length());
         pw.flush();
         pw.close(); 
         fw.close();   
     }
     
+    public static double getCurrentBestFit(){
+        int nFitnessCallsCount = 0;
+        double fBestFit = -Double.MAX_VALUE;
+        for (int j = 0; j < m_List.size(); j++){
+            Population pop = m_List.get(j);
+            
+            if (fBestFit < pop.getBestFit()){
+                fBestFit = pop.getBestFit();
+            }
+            nFitnessCallsCount += pop.getFitnessCalls();
+        }
+        return fBestFit;
+    }
+    
     public static void main(String [] args) throws IOException{
-    	File f = new File("data_txt/GPSGA_SphereModel_10000.txt");
+    	File f = new File("data_txt/GPSGA_Goldstein.txt");
     	if (!f.exists())
     	{
     		f.createNewFile();
@@ -124,6 +122,7 @@ public class GPSGASolver  {
     	fw.close();
     	
     	for(int i = 0;i<10;i++){
+    	    buf.append("RUN \t"+(i+1)+"\r\n");
     		run();
     	}
     }

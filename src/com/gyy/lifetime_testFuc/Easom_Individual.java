@@ -23,6 +23,8 @@ public class Easom_Individual {
     public static double function(double x1, double x2) {
         double fun;
         fun = -Math.cos(x1)*Math.cos(x2)*Math.exp(-(x1-Math.PI)*(x1-Math.PI)+(x2-Math.PI)*(x2-Math.PI));
-        return -fun;
+        return fun;
+        //return 1/fun
+        //func 1/fitness
     }
 }

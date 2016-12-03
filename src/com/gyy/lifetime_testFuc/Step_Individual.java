@@ -20,9 +20,10 @@ public class Step_Individual {
 
     private double MIN = -100;
 
+    //value = 0
     public static double function(double x1, double x2) {
         double fun;
-        fun =0-( Math.pow(Math.floor(x1+0.5), 2)+Math.pow(Math.floor(x2+0.5), 2));
+        fun =( Math.pow(Math.floor(x1+0.5), 2)+Math.pow(Math.floor(x2+0.5), 2));
         return fun;
     }
 }

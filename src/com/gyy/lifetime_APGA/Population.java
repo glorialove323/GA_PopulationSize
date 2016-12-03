@@ -61,6 +61,9 @@ class Population {
         }
     }
 
+    public Individual getCurBestIndividual(){
+        return currentBest;
+    }
     // 获取种群中的特定个体
     public Individual getIndividual(int index) {
         indiv = popList.get(index);
@@ -92,6 +95,12 @@ class Population {
     
     //获得种群中最佳的个体
     public Individual findBestIndividual(){
+        if (popList.size() == 0)
+        {
+            bestIndividual = null;
+            worstIndividual = null;
+            return null;
+        }
         bestIndividual = worstIndividual = popList.get(0);  
         for(int i = 1; i <getPopSize();i++){  
             if(popList.get(i).getFitness() > bestIndividual.getFitness()){  
