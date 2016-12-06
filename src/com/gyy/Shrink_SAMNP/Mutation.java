@@ -25,7 +25,6 @@ class Mutation {
                             newIndividuals[i].setAllele(j, '1');
                         else
                             newIndividuals[i].setAllele(j, '0');
-                        newIndividuals[i].setChanged(true);
                     }
         return nFeval;
     }

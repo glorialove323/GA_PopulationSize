@@ -14,7 +14,7 @@ public class SAMNPSolver {
 	private static int generation; // 种群的代数
 	static List<Population> m_List = null;
 	public static int m_nInitalSize;
-	public static int maxnfeval = 100000;
+	public static int maxnfeval = 200000;
 	public static int pmax = 4;
 	public static double fPopsizeFloat = 0.05;
 	static int m_nFitnessCalls;
@@ -60,7 +60,6 @@ public class SAMNPSolver {
 		pop.calFitnessValues();
 		m_nFitnessCalls+=pop.getPopSize();    
 		return m_nFitnessCalls;		
-		//return pop.getFeval();
 }
 
 	public static void run() throws IOException {
@@ -73,48 +72,36 @@ public class SAMNPSolver {
 		int p = 0;
 		generation = 1;
 
-//		long starttime = System.currentTimeMillis();
-
 		while (nFeval < maxnfeval) {
-			nFeval += evolve(pop);
+			nFeval = evolve(pop);
 	        buf.append(nFeval+"\t"+pop.getPopSize()+"\t");
 			double fCurBestFitness = pop.getBestFit();
 			if (fCurBestFitness > fBestFitness) {
 				fBestFitness = fCurBestFitness;
-				listBestFit.add(fBestFitness);
 				inv = pop.getBestIndividual();
 				p = 0;
 			} else {
 				p++;
 			}
-			buf.append(-(getCurrentBestFit())+"\r\n");
-			//System.out.print(generation + ": ");
-		//	pop.dumpMyself();
+			buf.append(-fBestFitness+"\r\n");
 			if (p >= 4) {
+	            listBestFit.add(fBestFitness);
 				pop = IncreaseNP(pop);
 				p = 0;
 				generation++;
 			} else if (p == 0) {
+			    listBestFit.add(fBestFitness);
 				pop = DecreaseNP(pop);
 				generation++;
 			}
 
 		}
-
-//		DecimalFormat df = new DecimalFormat("######0.00000");
-
-	//	System.out.println("BestFitness : " + df.format(-fBestFiness));
-	//	inv.dumpMyself();
-//		long endtime = System.currentTimeMillis();
-	//	System.out.println("the total evolve time: " + (endtime - starttime));
-
-		FileWriter fw = new FileWriter("data_txt/SAMNP_Branin.txt", true);
+		FileWriter fw = new FileWriter("data_txt/SAMNP_Step.txt", true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		PrintWriter pw = new PrintWriter(bw);
 		pw.print(buf);
 		buf.delete(0, buf.length());
-//		pw.println("bestFitness: " + df.format(1/fBestFiness));
-//		pw.println("the total evolve time: " + (endtime - starttime));
+
 		pw.flush();
 		pw.close();
 		fw.close();
@@ -125,7 +112,7 @@ public class SAMNPSolver {
 	}
 
 	public static void main(String[] args) throws IOException {
-		File f = new File("data_txt/SAMNP_Branin.txt");
+		File f = new File("data_txt/SAMNP_Step.txt");
 		if (!f.exists()) {
 			f.createNewFile();
 		}
@@ -141,6 +128,7 @@ public class SAMNPSolver {
 	
     public static void reset(){
         m_nFitnessCalls = 0;
+        listBestFit.clear();
     }
     
     public static double getCurrentBestFit(){

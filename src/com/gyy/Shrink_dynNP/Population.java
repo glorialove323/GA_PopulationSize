@@ -15,7 +15,7 @@ public class Population {
 
     protected int worstPos, bestPos;
 
-    protected double avgFit, worstFit, bestFit;
+    protected double avgFit, worstFit, bestFit = -Double.MAX_VALUE;
 
     protected double[] fitness;
     

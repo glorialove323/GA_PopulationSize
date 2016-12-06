@@ -13,15 +13,21 @@ import java.util.List;
 public class GPSGASolver  {
 
     static List<Population> m_List = null;
-    static int MaxFitnessCalls = 100000;
+    static int MaxFitnessCalls = 200000;
     public static int m_nInitalSize;
     static int m_nFitnessCalls;
+    static double m_fBestFit = -Double.MAX_VALUE;
     static{
        m_nInitalSize = 20;
     }
     
     static StringBuffer  buf = new StringBuffer();
-
+    
+    static void reset(){
+    	m_fBestFit = -Double.MAX_VALUE;
+    	m_nFitnessCalls = 0;
+    }
+    
     public static void evolve(Population pop)
     {
         Crossover cros = new UniformCrossover(0.65, 0.5);
@@ -33,12 +39,15 @@ public class GPSGASolver  {
         muta.mutate(pop.getIndividuals());
     }
     public static boolean stop(){
+        /*
         for (int i = 0; i < m_List.size(); i++){
             m_nFitnessCalls += m_List.get(i).getFitnessCalls();
         }
+        */
         if (m_nFitnessCalls > MaxFitnessCalls){
         	return true;
         }
+        
     	return false;
     }
     public static void evolve(Population pop, int fitnessCalls){
@@ -56,8 +65,9 @@ public class GPSGASolver  {
             pop.calAvgFitness();
             
             fitnessCalls -= newIndividuals.length;
+            m_nFitnessCalls += newIndividuals.length;
             pop.incFinessCalls(newIndividuals.length);
-            buf.append(pop.getFitnessCalls()+"\t"+pop.getPopSize()+"\t"+(-getCurrentBestFit())+"\r\n");
+            buf.append(m_nFitnessCalls+"\t"+pop.getPopSize()+"\t"+(-getCurrentBestFit())+"\r\n");
     	}
 
     }
@@ -75,7 +85,6 @@ public class GPSGASolver  {
         
         while (stop() == false){
             evolve(pop1, M);
-            buf.append(pop1.m_nFitnessCalls+"\t"+pop1.getPopSize()+"\t");
             evolve(pop2, M);
             if (pop1.expired(pop2)){
                 i++;
@@ -87,7 +96,7 @@ public class GPSGASolver  {
             }
         }
 
-        FileWriter fw = new FileWriter("data_txt/GPSGA_Goldstein.txt", true);  
+        FileWriter fw = new FileWriter("data_txt/GPSGA_Branin.txt", true);  
         BufferedWriter bw = new BufferedWriter(fw);  
         PrintWriter pw = new PrintWriter(bw); 
         pw.print(buf);
@@ -98,7 +107,6 @@ public class GPSGASolver  {
     }
     
     public static double getCurrentBestFit(){
-        int nFitnessCallsCount = 0;
         double fBestFit = -Double.MAX_VALUE;
         for (int j = 0; j < m_List.size(); j++){
             Population pop = m_List.get(j);
@@ -106,13 +114,15 @@ public class GPSGASolver  {
             if (fBestFit < pop.getBestFit()){
                 fBestFit = pop.getBestFit();
             }
-            nFitnessCallsCount += pop.getFitnessCalls();
         }
-        return fBestFit;
+        if (m_fBestFit < fBestFit){
+        	m_fBestFit = fBestFit;
+        }
+        return m_fBestFit;
     }
     
     public static void main(String [] args) throws IOException{
-    	File f = new File("data_txt/GPSGA_Goldstein.txt");
+    	File f = new File("data_txt/GPSGA_Branin.txt");
     	if (!f.exists())
     	{
     		f.createNewFile();
@@ -123,6 +133,7 @@ public class GPSGASolver  {
     	
     	for(int i = 0;i<10;i++){
     	    buf.append("RUN \t"+(i+1)+"\r\n");
+    	    reset();
     		run();
     	}
     }

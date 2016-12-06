@@ -102,7 +102,10 @@ class Population {
             return null;
         }
         bestIndividual = worstIndividual = popList.get(0);  
-        for(int i = 1; i <getPopSize();i++){  
+        for(int i = 1; i <getPopSize();i++){ 
+            popList.get(i).calFitness();
+        }
+        for(int i = 1; i <getPopSize();i++){ 
             if(popList.get(i).getFitness() > bestIndividual.getFitness()){  
                 bestIndividual = popList.get(i);  
             }  
@@ -111,7 +114,6 @@ class Population {
                 worstIndex = i;  
             }  
         }  
-      
         if( Evolve.getGeneration() == 1 ){//初始种群  
             currentBest = (Individual)bestIndividual.clone();  
         }else{  

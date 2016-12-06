@@ -26,8 +26,6 @@ public class GeneticAlgorithms {
 
     public static int maxFitnessCalls;
 
-    public static double reproductionRatio;
-
     public static int chromLen;
 
     public static int popSize;
@@ -38,8 +36,7 @@ public class GeneticAlgorithms {
         populationSize = 20;
         crossoverRate = 0.65;
         mutateRate = 0.015;
-        reproductionRatio = 0.4;
-        maxFitnessCalls = 100000;
+        maxFitnessCalls = 200000;
     }
 
     static StringBuffer buf = new StringBuffer();
@@ -54,7 +51,7 @@ public class GeneticAlgorithms {
             Evolve.evolve(pop);
 
             buf.append(Evolve.m_nFitnessCalls + "\t" + pop.getPopSize() + "\t"
-                    + (-pop.getCurBestIndividual().getFitness()) +"\r\n");
+                    + (-(pop.getCurBestIndividual().getFitness())) +"\r\n");
         }
         FileWriter fw = new FileWriter("data_txt/APGA_Branin.txt", true);
         BufferedWriter bw = new BufferedWriter(fw);

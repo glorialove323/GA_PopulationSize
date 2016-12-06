@@ -62,6 +62,7 @@ public class SGASolver extends Solvers {
         mutation.mutate(newIndividuals);
         replacement.replace(currentPopulation, newIndividuals); 
         fitnessCalls += newIndividuals.length; 
+        ParEngine.fitCalls += newIndividuals.length;
         avgFitness = currentPopulation.calAvgFitness();
         return Stopper.criteria(currentGeneration, currentPopulation); 
     }

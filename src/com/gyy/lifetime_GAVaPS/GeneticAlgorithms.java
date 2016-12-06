@@ -35,7 +35,7 @@ public class GeneticAlgorithms {
         crossoverRate = 0.65;  
         mutateRate = 0.015;
         reproductionRatio = 0.4;
-        maxFitnessCalls = 100000;
+        maxFitnessCalls = 200000;
     }  
     static StringBuffer  buf = new StringBuffer();
     
@@ -45,9 +45,10 @@ public class GeneticAlgorithms {
         Population pop = new Population(populationSize);  
         pop.initPopulation();
 
-        while(!Evolve.isEvolutionDone()&&(!Evolve.isPopSizeZero(pop))){
-            Evolve.evolve(pop);           
-            buf.append(Evolve.m_nFitnessCalls+"\t"+pop.getPopSize()+"\t"+(-pop.currentBest.getFitness()+"\r\n"));
+        while (!Evolve.isEvolutionDone() && (!Evolve.isPopSizeZero(pop))) {
+            Evolve.evolve(pop);
+            buf.append(Evolve.m_nFitnessCalls + "\t" + pop.getPopSize() + "\t"
+                    + (-pop.currentBest.getFitness() + "\r\n"));
         }          
         FileWriter fw = new FileWriter("data_txt/GAVAPS_Branin.txt", true);  
         BufferedWriter bw = new BufferedWriter(fw);  

@@ -14,7 +14,7 @@ import com.gyy.MultiPops_PGA.SGA.Population;
 public class Stopper{
     
     public static int   maxNGen = 200000;            // Maximal number of generations to perform.             Default = 200
-    public static long  maxFitCalls= 100000;        // Maximal number of fitness calls.                      Default = -1 (unbounded)
+    public static long  maxFitCalls= 300000;        // Maximal number of fitness calls.                      Default = -1 (unbounded)
     public static int   allFitnessEqual = -1;    // Stop if all individuals have the same fitness.        Default = -1 (ignore)
     public static int   foundBestFit= -1;       // Stop if the optimum was found?                        Default = -1 (-1 -> no; 1 -> yes)
     

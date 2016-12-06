@@ -22,7 +22,7 @@ public class GeneticAlgorithms {
     public static void run() throws IOException{
         
         ParEngine parEngine = new ParEngine();
-      //  ParPress.printInitialInfo();
+
         for (int r = 0; r <ParEngine.parRuns; r++) {
           //  ParPress.printRunInitialInfo(r);
             nSuccess += parEngine.RUN(r);
@@ -31,7 +31,7 @@ public class GeneticAlgorithms {
     }
     
     public static void main(String [] args) throws IOException{
-        File f = new File("data_txt/PGA_Branin.txt");
+        File f = new File("data_txt/PGA_Rosenbrock.txt");
         if (!f.exists()) {
             f.createNewFile();
         }

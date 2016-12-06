@@ -103,6 +103,10 @@ public class Population {
             return null;
         }
         bestIndividual = worstIndividual = popList.get(0);  
+        for(int i = 1; i <getPopSize();i++){ 
+            popList.get(i).calFitness();
+        }
+        bestIndividual = worstIndividual = popList.get(0);  
         for(int i = 1; i <getPopSize();i++){  
             if(popList.get(i).getFitness() > bestIndividual.getFitness()){  
                 bestIndividual = popList.get(i);  

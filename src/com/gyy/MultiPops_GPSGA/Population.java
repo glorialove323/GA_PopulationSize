@@ -11,7 +11,7 @@ public class Population {
 
     protected int worstPos, bestPos;
 
-    protected double avgFit, worstFit, bestFit;
+    protected double avgFit, worstFit, bestFit = -Double.MAX_VALUE;
 
     protected double[] fitness;
     
@@ -135,7 +135,7 @@ public class Population {
 
     public void calFitnessValues() {
         worstFit = Double.MAX_VALUE;
-        bestFit = Double.MIN_VALUE;
+        bestFit = -Double.MAX_VALUE;
         for (int i = 0; i < this.popSize; i++) {
             double newFit = individuals[i].calFitness();
             fitness[i] = newFit;

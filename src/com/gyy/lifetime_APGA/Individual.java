@@ -52,7 +52,7 @@ public class Individual {
 
     // 获取个体的适应度值
     public double getFitness() {
-        indivFitness = calFitness();
+       // indivFitness = calFitness();
         return indivFitness;
     }
 
@@ -145,7 +145,6 @@ public class Individual {
 
         return codeBuf.toString();
     }
-
     // 解码
     private String codingVariable2(double x) {
         double y = (((x + Math.abs(MIN2)) * Math.pow(2, 10)) / (MAX2 + Math.abs(MIN2)));
@@ -157,6 +156,7 @@ public class Individual {
 
         return codeBuf.toString();
     }
+
     private double decodeGene1(String gene) {
         int value;
         double decode;
@@ -173,6 +173,8 @@ public class Individual {
 
         return decode;
     }
+
+
 
     public void mutateSingleBit(int index) {
         String gene, gn;
@@ -205,6 +207,7 @@ public class Individual {
         Individual inv = new Individual();
         try {
             inv.chrom = chrom.clone();
+            inv.indivFitness = indivFitness;
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }

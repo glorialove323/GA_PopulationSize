@@ -135,8 +135,8 @@ public class ParPress{
     public static void printData() throws IOException {
         StringBuffer buf = new StringBuffer();
         buf.append(ParEngine.fitCalls + "\t" + ParEngine.bestSoFar.getPopulation().getPopSize() + "\t"
-                + (-ParEngine.bestSoFar.getFitness()) + "\r\n");
-        FileWriter fw = new FileWriter("data_txt/PGA_Branin.txt", true);
+                + (ParEngine.bestSoFar.getFitness()) + "\r\n");
+        FileWriter fw = new FileWriter("data_txt/PGA_Rosenbrock.txt", true);
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter pw = new PrintWriter(bw);
         pw.print(buf);

@@ -3,7 +3,6 @@
  */
 package com.gyy.lifetime_GAVaPS;
 
-import com.gyy.lifetime_APGA.Chromosome;
 
 /**
  * @author Gloria
@@ -54,7 +53,7 @@ public class Individual {
 
     // 获取个体的适应度值
     public double getFitness() {
-        indivFitness = calFitness();
+       // indivFitness = calFitness();
         return indivFitness;
     }
 
@@ -167,6 +166,7 @@ public class Individual {
 
         return decode;
     }
+
     private double decodeGene2(String gene) {
         int value;
         double decode;
@@ -207,6 +207,7 @@ public class Individual {
         Individual inv = new Individual();
         try {
             inv.chrom = chrom.clone();
+            inv.indivFitness = indivFitness;
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }

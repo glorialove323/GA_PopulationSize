@@ -36,17 +36,12 @@ class UniformCrossover extends Crossover{
                         char allele = indiv1.getAllele(j);
                         indiv1.setAllele(j, indiv2.getAllele(j));
                         indiv2.setAllele(j, allele);
-                        indiv1.setChanged(true);
-                        indiv2.setChanged(true);
-                        bChanged = true;
                     }
-            if (bChanged){
-                selectedSet.setIndividual(i, indiv1, indiv1.calFitness());
-                selectedSet.setIndividual(i+1, indiv2, indiv2.calFitness());
-            }
+            selectedSet.setIndividual(i, indiv1, indiv1.calFitness());
+            selectedSet.setIndividual(i+1, indiv2, indiv2.calFitness());
         }
     }
     
-    public static Random        random = new Random();
+    public static Random random = new Random();
 }
 

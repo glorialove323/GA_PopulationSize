@@ -20,22 +20,14 @@ public class Individual {
 
     private char[] individual = new char[20];
     
-    private double MAX1 = 10;
+    private double MAX = 100;
 
-    private double MIN1 = -5;
-    
-    private double MAX2 = 15;
-    private double MIN2 = 0;
+    private double MIN = -100;
 
+    //value = 0
     public static double function(double x1, double x2) {
         double fun;
-        int a =1;
-        double b = 5.1/(4*Math.PI*Math.PI);
-        double c = 5/Math.PI;
-        int d =6;
-        int e = 10;
-        double f = 1/(8*Math.PI);
-        fun = a*(x2-b*x1*x1+c*x1-d)*(x2-b*x1*x1+c*x1-d)+e*(1-f)*Math.cos(x1)+e;
+        fun =( Math.pow(Math.floor(x1+0.5), 2)+Math.pow(Math.floor(x2+0.5), 2));
         return -fun;
     }
     
@@ -94,8 +86,8 @@ public class Individual {
     // 编码
     public void coding() {
         String code1, code2;
-        code1 = codingVariable1(x1);
-        code2 = codingVariable2(x2);
+        code1 = codingVariable(x1);
+        code2 = codingVariable(x2);
         chrom.setGene(0, 9, code1);
         chrom.setGene(10, 19, code2);
     }
@@ -105,22 +97,12 @@ public class Individual {
         String gene1, gene2;
         gene1 = chrom.getGene(0, 9);
         gene2 = chrom.getGene(10, 19);
-        x1 = decodeGene1(gene1);
-        x2 = decodeGene2(gene2);
+        x1 = decodeGene(gene1);
+        x2 = decodeGene(gene2);
     }
 
-    private String codingVariable1(double x) {
-        double y = (((x + Math.abs(MIN1)) * Math.pow(2, 10)) / (MAX1 + Math.abs(MIN1)));
-        String code = Integer.toBinaryString((int) y);
-
-        StringBuffer codeBuf = new StringBuffer(code);
-        for (int i = code.length(); i < defaultGeneLength; i++)
-            codeBuf.insert(0, '0');
-
-        return codeBuf.toString();
-    }
-    private String codingVariable2(double x) {
-        double y = (((x + Math.abs(MIN2)) * Math.pow(2, 10)) / (MAX2 + Math.abs(MIN2)));
+    private String codingVariable(double x) {
+        double y = (((x + Math.abs(MIN)) * Math.pow(2, 10)) / (MAX + Math.abs(MIN)));
         String code = Integer.toBinaryString((int) y);
 
         StringBuffer codeBuf = new StringBuffer(code);
@@ -130,21 +112,15 @@ public class Individual {
         return codeBuf.toString();
     }
 
-    private double decodeGene1(String gene) {
+
+    private double decodeGene(String gene) {
         int value;
         double decode;
         value = Integer.parseInt(gene, 2);
-        decode = value / (Math.pow(2, 10)) * (MAX1 + Math.abs(MIN1)) + MIN1;
+        decode = value / (Math.pow(2, 10)) * (MAX + Math.abs(MIN)) + MIN;
         return decode;
     }
-    private double decodeGene2(String gene) {
-        int value;
-        double decode;
-        value = Integer.parseInt(gene, 2);
-        decode = value / (Math.pow(2, 10)) * (MAX2 + Math.abs(MIN2)) + MIN2;
-        return decode;
-    }
-   
+
    
     public String toString() {
         String str = "";
@@ -157,8 +133,8 @@ public class Individual {
     // 随机产生个体
     public void generateIndividual() {
         chrom = new Chromosome(defaultChromLength);
-        x1 = Math.random() * (MAX1 - MIN1) + MIN1;
-        x2 = Math.random() * (MAX2 - MIN2) + MIN2;
+        x1 = Math.random() * (MAX - MIN) + MIN;
+        x2 = Math.random() * (MAX - MIN) + MIN;
         coding();
         calFitness();
     }
